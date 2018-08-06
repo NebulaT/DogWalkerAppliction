@@ -4,8 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nibulateam.dogwalkerappliction.Model.Input;
 import com.example.nibulateam.dogwalkerappliction.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,12 +26,29 @@ public class NewAccountActivity extends AppCompatActivity {
 
     private String email;
     private String password;
+    private String phone;
+    private String name;
+    private String userId;
+
     private static String TAG_New_User="New user";
     private static String TAG_Exisit_User="Exisit user";
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private DatabaseReference mDatabase;
+
+
+    //ui//
+    private Button creatButton;
+    private EditText EmailET;
+    private EditText PasswordET;
+    private  EditText PhoneET;
+    private  EditText NameET;
+    private String UserID;
+
+    private User user;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +57,39 @@ public class NewAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_newaccountactivity);
 
         mAuth = FirebaseAuth.getInstance();
+
+        creatButton=(Button)findViewById(R.id.createButton);
+        EmailET=(EditText) findViewById(R.id.emailPlain) ;
+        NameET=(EditText)findViewById(R.id.namePlain);
+        PasswordET=(EditText)findViewById(R.id.passwordPlain);
+        PhoneET=(EditText)findViewById(R.id.phonePlain);
+
+
+
+
+        creatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                boolean check=checkInput();
+              if(check==true)
+              {
+              email=EmailET.getText().toString();
+              password=PasswordET.getText().toString();
+              phone=PhoneET.getText().toString();
+              name=NameET.getText().toString();
+              signUpNewUsersWithEmail();
+
+        }
+        else {
+                  Toast.makeText(NewAccountActivity.this, "Authentication failed.",
+                          Toast.LENGTH_SHORT).show();
+              }
+
+            }
+        });
+
+
 
 /*
 //exmple
@@ -48,12 +103,7 @@ public class NewAccountActivity extends AppCompatActivity {
 
 
     }
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
+
 
     private void signUpNewUsersWithEmail() {
         if (email.equals(null) || password.equals(null)) {
@@ -92,6 +142,9 @@ public class NewAccountActivity extends AppCompatActivity {
         if(user!=null)
         {
             currentUser=user;
+            userId=user.getUid();
+            this.user=new User(userId,name,email,password,phone);
+            addUserDataTo_DataBase(this.user);
             Log.d(TAG_Exisit_User, "ExisitUserWithEmail:success");
             //next page!//
         }
@@ -105,7 +158,48 @@ public class NewAccountActivity extends AppCompatActivity {
     {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mDatabase.child("users").child(user.getUserId()).setValue(user);
+        mDatabase.child("Users").child(user.getUserId()).child("UserName").setValue(user.getFirstName());
+
+        mDatabase.child("Users").child(user.getUserId()).child("Phone").setValue(user.getPhoneNumber());
+
+        mDatabase.child("Users").child(user.getUserId()).child("Email").setValue(user.getEmail());
+
+
+
+
+    }
+
+
+    public boolean checkInput()
+    {
+        if(!Input.isValidEmail(EmailET.getText().toString()))
+        {
+            Toast.makeText(NewAccountActivity.this, "Email-Error",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+       else if(!Input.isValidName(NameET.getText().toString()))
+        {
+            Toast.makeText(NewAccountActivity.this, "Name-Error",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+       else if(!Input.isValidName(PhoneET.getText().toString()))
+        {
+            Toast.makeText(NewAccountActivity.this, "Phone-Error",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+      else  if(!Input.isValidName(PasswordET.getText().toString()))
+        {
+            Toast.makeText(NewAccountActivity.this, "Password-Error must be 4 letters and numbers",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+        return true;
+
     }
 
 }

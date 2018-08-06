@@ -39,26 +39,33 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void  signInExistingUsers(String Email,String Password)
     {
-        mAuth.signInWithEmailAndPassword(Email, Password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG_Existing_User, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG_Existing_User, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                              updateUI(null);
-                        }
+        if(Email.equals(null) || Password.equals(null))
+        {
+            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else {
+            mAuth.signInWithEmailAndPassword(Email, Password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG_Existing_User, "signInWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUI(user);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG_Existing_User, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                                updateUI(null);
+                            }
 
-                        // ...
-                    }
-                });
+                            // ...
+                        }
+                    });
+        }
     }
 
     private void updateUI(FirebaseUser user)

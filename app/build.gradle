@@ -31,6 +31,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:4.0.0'
     implementation 'com.facebook.android:facebook-android-sdk:4.35.0'
     implementation 'com.twitter.sdk.android:twitter-core:3.1.0'
+    implementation 'com.facebook.android:account-kit-sdk:4.+'
 
 }
 apply plugin: 'com.google.gms.google-services'

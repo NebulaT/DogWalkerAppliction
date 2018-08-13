@@ -50,9 +50,6 @@
         <activity
             android:name="com.facebook.accountkit.ui.AccountKitActivity" />
 
-        <meta-data android:name="com.facebook.accountkit.FacebookAppEventsEnabled"
-            android:value="false"/>
-
 
 
 

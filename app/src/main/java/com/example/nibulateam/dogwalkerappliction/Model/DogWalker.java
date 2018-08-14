@@ -8,13 +8,25 @@ private float rate;
 private  float price;
 private String aboutMe;
 private String experience;
-//avaliability//
-//typeofdogs//
+private String typeOfDogs;
 
-  public   DogWalker()
+//avaliability//
+
+    public   DogWalker()
     {
 
     }
+
+
+    public String getTypeOfDogs() {
+        return typeOfDogs;
+    }
+
+    public void setTypeOfDogs(String typeOfDogs) {
+        this.typeOfDogs = typeOfDogs;
+    }
+
+
 
     public DogWalker(float rate, float price, String aboutMe, String experience) {
         this.rate = rate;

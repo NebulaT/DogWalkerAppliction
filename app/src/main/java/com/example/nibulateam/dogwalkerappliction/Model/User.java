@@ -17,8 +17,17 @@ public class User implements Serializable {
     private boolean isDogWalker;
     private  boolean isDogOwner;
     private String phoneNumber;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     //pic//
-    protected DogWalker dogWalker;
+    public DogWalker dogWalker;
     protected DogOwner dogOwner;
 
 
@@ -63,14 +72,13 @@ public class User implements Serializable {
     public void setDogWalker() {
         isDogWalker = true;
 
-        if (isDogWalker== true)
-        {
-            this.dogWalker=new DogWalker();
+        if (isDogWalker== true) {
+            this.dogWalker = new DogWalker();
 
         }
 
-
     }
+
 
     public boolean isDogOwner() {
         return isDogOwner;

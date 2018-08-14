@@ -9,7 +9,7 @@ private String experience;
 //avaliability//
 //typeofdogs//
 
-    DogWalker()
+  public   DogWalker()
     {
 
     }

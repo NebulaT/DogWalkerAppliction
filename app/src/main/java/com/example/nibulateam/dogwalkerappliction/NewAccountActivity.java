@@ -31,7 +31,7 @@ public class NewAccountActivity extends AppCompatActivity {
     private String userId;
 
     private static String TAG_New_User="New user";
-    private static String TAG_Exisit_User="Exisit user";
+
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
@@ -91,16 +91,6 @@ public class NewAccountActivity extends AppCompatActivity {
 
 
 
-/*
-//exmple
-        email="yaronmord@gmail.com";
-        password="123456";
-        signUpNewUsersWithEmail();
-*/
-
-//      signInExistingUsers("yaronmord@gmail.com","123456");
-
-
 
     }
 
@@ -143,14 +133,15 @@ public class NewAccountActivity extends AppCompatActivity {
         {
             currentUser=user;
             userId=user.getUid();
+
             this.user=new User(userId,name,email,password,phone);
             addUserDataTo_DataBase(this.user);
-            Log.d(TAG_Exisit_User, "ExisitUserWithEmail:success");
+            Log.d(TAG_New_User, "NewUserWithEmail:success");
             //next page!//
         }
         else
         {
-            Log.d(TAG_Exisit_User, "ExisitUserWithEmail:failed");
+            Log.d(TAG_New_User, "ExisitUserWithEmail:failed");
         }
     }
 
@@ -164,7 +155,7 @@ public class NewAccountActivity extends AppCompatActivity {
 
         mDatabase.child("Users").child(user.getUserId()).child("Email").setValue(user.getEmail());
 
-
+        Log.d(TAG_New_User, "Add user to dataBase:success");
 
 
     }

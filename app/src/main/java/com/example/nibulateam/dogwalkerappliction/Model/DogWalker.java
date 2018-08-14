@@ -1,6 +1,8 @@
 package com.example.nibulateam.dogwalkerappliction.Model;
 
-public class DogWalker {
+import java.io.Serializable;
+
+public class DogWalker  implements Serializable {
 
 private float rate;
 private  float price;

@@ -50,6 +50,7 @@ public class NewAccountActivity extends AppCompatActivity {
     private  EditText PhoneET;
     private  EditText NameET;
     private String UserID;
+    private boolean isUserCreated;
 
     private User user;
 
@@ -86,19 +87,7 @@ public class NewAccountActivity extends AppCompatActivity {
                     signUpNewUsersWithEmail();
 
                     //Intent intent=new Intent(NewAccountActivity.this,User.class);
-                    //intent.putExtra("user",user);
-
-                    if(userChoiceString.equals("DogWalker"))
-                    {
-                        user.setDogWalker(true);
-                        //Intent dogWalkerCreationIntent=new Intent(getApplicationContext())
-                    }
-                    else if(userChoiceString.equals("DogOwner"))
-                    {
-                        user.setDogOwner(true);
-                        Intent dogOwnerCreationIntent=new Intent(getApplicationContext(),DogOwnerActivity.class);
-                        startActivity(dogOwnerCreationIntent);
-                    }
+                    //intent.putExtra("user",user)
 
               }
                  else {
@@ -158,6 +147,21 @@ public class NewAccountActivity extends AppCompatActivity {
             addUserDataTo_DataBase(this.user);
             Log.d(TAG_New_User, "NewUserWithEmail:success");
             //next page!//
+
+            if(userChoiceString.equals("DogWalker"))
+            {
+                this.user.setDogWalker();
+                Intent dogWalkerCreationIntent=new Intent(getApplicationContext(),DogWalker_RegisterActivity.class);
+                dogWalkerCreationIntent.putExtra("user",this.user);
+                startActivity(dogWalkerCreationIntent);
+            }
+            else if(userChoiceString.equals("DogOwner"))
+            {
+                this.user.setDogOwner(true);
+                Intent dogOwnerCreationIntent=new Intent(getApplicationContext(),DogOwnerActivity.class);
+                dogOwnerCreationIntent.putExtra("user",this.user);
+                startActivity(dogOwnerCreationIntent);
+            }
         }
         else
         {

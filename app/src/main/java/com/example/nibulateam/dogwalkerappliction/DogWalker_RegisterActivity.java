@@ -1,6 +1,8 @@
 package com.example.nibulateam.dogwalkerappliction;
 
 import android.app.DatePickerDialog;
+import android.app.IntentService;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nibulateam.dogwalkerappliction.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
@@ -25,10 +28,12 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
 
 
     private static final String TAG_DATE="Dog_Walker_register";
+    private Intent intent;
     private Button SelectDateButton,DoneButton;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private CheckBox SmallD,MediumD,LargeD;
     private int year,month,day;
+    private User user;
 
 
     private RadioGroup radioGroupFM;
@@ -47,6 +52,13 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_dogwalker);
+
+        intent=getIntent();
+        user=(User)intent.getSerializableExtra("user");
+
+
+        Toast.makeText(DogWalker_RegisterActivity.this,user.getEmail(),Toast.LENGTH_SHORT).show();
+
 
     SelectDateButton=(Button)findViewById(R.id.SelectDatebutton);
         SmallD=(CheckBox)findViewById(R.id.SmallCheckBox);
@@ -101,6 +113,7 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
                     FemaleRB.setChecked(false);
                     isMale=true;
                     isFemale=false;
+
                 }
             }
         });
@@ -112,7 +125,7 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(FemaleRB.isChecked())
                 {
-                    FemaleRB.setChecked(false);
+                    MaleRB.setChecked(false);
                     isFemale=true;
                     isMale=false;
                 }

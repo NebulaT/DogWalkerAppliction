@@ -13,6 +13,7 @@ public class User implements Serializable {
     private String password;
     private String email;
     private Date age;
+    private String gender;
     private boolean isDogWalker;
     private  boolean isDogOwner;
     private String phoneNumber;
@@ -59,8 +60,8 @@ public class User implements Serializable {
         return isDogWalker;
     }
 
-    public void setDogWalker(boolean dogWalker) {
-        isDogWalker = dogWalker;
+    public void setDogWalker() {
+        isDogWalker = true;
 
         if (isDogWalker== true)
         {

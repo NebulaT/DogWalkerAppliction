@@ -84,25 +84,7 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
             isInputBirthDay=true;
         }
     };
-/*
-    radioGroupFM=(RadioGroup)findViewById(R.id.MaleFemalGruopB);
 
-    radioGroupFM.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(RadioGroup radioGroup, int checkId) {
-
-            if(checkId==R.id.MaleRadioButton)
-            {
-
-            }
-            if(checkId==R.id.FemaleRadioButton)
-            {
-
-            }
-
-        }
-    });
-*/
 
 
         MaleRB.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +164,7 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(checkInput()==true)
                 {
-
+                addUserTo_DataBase();
                 }
             }
         });
@@ -190,6 +172,11 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
 
     }
 
+    private void addUserTo_DataBase() {
+
+
+
+    }
 
 
     private void ChooseBirthday()

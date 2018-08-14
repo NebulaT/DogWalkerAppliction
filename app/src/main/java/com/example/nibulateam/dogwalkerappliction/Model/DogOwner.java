@@ -17,9 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DogOwner {
+public class DogOwner implements Serializable {
 
     private ArrayList<Pet> pets;
 

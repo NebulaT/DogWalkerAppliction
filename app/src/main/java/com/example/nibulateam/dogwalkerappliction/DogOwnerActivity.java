@@ -1,7 +1,9 @@
 package com.example.nibulateam.dogwalkerappliction;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,12 +28,16 @@ public class DogOwnerActivity extends AppCompatActivity{
     private Button nextButton;
     private Intent intent;
     private User user;
+    private Button addPhotoButton;
 
     private String petName;
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private DatabaseReference mDatabase;
+
+    private Uri tempImage;
+    private static final int PICK_IMAGE=100;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,20 +53,44 @@ public class DogOwnerActivity extends AppCompatActivity{
         addPetTextView=(TextView)findViewById(R.id.addPetTextView);
         petNamePlain=(EditText)findViewById(R.id.petNamePlain);
         nextButton=(Button)findViewById(R.id.nextButton);
-
+        addPhotoButton=(Button)findViewById(R.id.addPhotoButton);
         petName=petNamePlain.getText().toString();
 
         mAuth = FirebaseAuth.getInstance();
 
+        addPhotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openGallery();
+
+            }
+        });
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-
             }
         });
 
+    }
+    private void openGallery()
+    {
+        Intent gallery=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery,PICK_IMAGE);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestedCode,int resultCode,Intent data)
+    {
+        super.onActivityResult(requestedCode,resultCode,data);
+
+        if(resultCode==RESULT_OK && requestedCode==PICK_IMAGE)
+        {
+            tempImage=data.getData();
+            addPetPhotoView.setImageURI(tempImage);
+        }
     }
 }

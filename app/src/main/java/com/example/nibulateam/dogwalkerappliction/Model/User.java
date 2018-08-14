@@ -18,7 +18,7 @@ public class User implements Serializable {
     private String phoneNumber;
     //pic//
     protected DogWalker dogWalker;
-    //dogOwner//
+    protected DogOwner dogOwner;
 
 
     public String getFirstName() {
@@ -77,6 +77,12 @@ public class User implements Serializable {
 
     public void setDogOwner(boolean dogOwner) {
         isDogOwner = dogOwner;
+
+        if (isDogOwner== true)
+        {
+            this.dogOwner=new DogOwner();
+
+        }
 
     }
 

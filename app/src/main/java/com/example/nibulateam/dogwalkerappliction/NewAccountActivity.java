@@ -90,13 +90,14 @@ public class NewAccountActivity extends AppCompatActivity {
 
                     if(userChoiceString.equals("DogWalker"))
                     {
-                        user.isDogWalker();
+                        user.setDogWalker(true);
                         //Intent dogWalkerCreationIntent=new Intent(getApplicationContext())
                     }
                     else if(userChoiceString.equals("DogOwner"))
                     {
-                        user.isDogOwner();
-                        Intent dogOwnerCreationIntent=new Intent(getApplicationContext(),DogOwner.class);
+                        user.setDogOwner(true);
+                        Intent dogOwnerCreationIntent=new Intent(getApplicationContext(),DogOwnerActivity.class);
+                        startActivity(dogOwnerCreationIntent);
                     }
 
               }

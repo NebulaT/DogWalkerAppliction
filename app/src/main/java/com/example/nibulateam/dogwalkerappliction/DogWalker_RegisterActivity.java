@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +26,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DogWalker_RegisterActivity extends AppCompatActivity {
 
@@ -40,8 +43,13 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
     private Button SelectDateButton,DoneButton;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private CheckBox SmallD,MediumD,LargeD;
+    private EditText ExprianceET,AboutMeET;
+    private SeekBar PriceSeekbar;
+    private TextView UserNameTV;
+    private TextView PriceTV;
     private int year,month,day;
     private User user;
+    private int price;
 
 
     private RadioGroup radioGroupFM;
@@ -50,7 +58,9 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
     private Boolean isMale,isFemale;
     private String dogSize;
     private String Exp=null;
-    private EditText ExprianceET;
+    private String AboutMe=null;
+
+
 
     private boolean isInputGender,isInputBirthDay,isInputDogSize;
 
@@ -61,9 +71,10 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_dogwalker);
 
+
         intent=getIntent();
         user=(User)intent.getSerializableExtra("user");
-
+        mAuth = FirebaseAuth.getInstance();
 
         Toast.makeText(DogWalker_RegisterActivity.this,user.getEmail(),Toast.LENGTH_SHORT).show();
 
@@ -76,7 +87,14 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
         FemaleRB=(RadioButton)findViewById(R.id.FemaleRadioButton);
         ExprianceET=(EditText)findViewById(R.id.ExpEditText);
         DoneButton=(Button)findViewById(R.id.Donebutton);
+        PriceSeekbar=(SeekBar)findViewById(R.id.PriceSeekBar);
+        PriceTV=(TextView)findViewById(R.id.ShowPricetextView);
+        UserNameTV=(TextView)findViewById(R.id.userNameTextView) ;
+        AboutMeET=(EditText)findViewById(R.id.AboutMeEditText);
 
+        PriceTV.setText("0$");
+
+        UserNameTV.setText("Hello "+user.getFirstName());
 
         SelectDateButton.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -88,7 +106,8 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
     mDateSetListener=new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-            Log.d(TAG_DATE,"onDateSet :"+i+"/"+i1+"/"+i2);
+            Log.d(TAG_DATE,"BirthdaySet :"+i+"/"+i1+"/"+i2);
+
             isInputBirthDay=true;
         }
     };
@@ -165,15 +184,51 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
         });
 
 
-        Exp=ExprianceET.getText().toString();
+
 
         DoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(checkInput()==true)
                 {
-                addUserTo_DataBase();
+                    Exp=ExprianceET.getText().toString();
+                    AboutMe=AboutMeET.getText().toString();
+                    // user.setAge(new Date(year,month,day));
+                    user.dogWalker.setPrice(price);
+                    user.dogWalker.setAboutMe(AboutMe);
+                    user.dogWalker.setExperience(Exp);
+                    user.setGender(GetGender());
+                    user.dogWalker.setTypeOfDogs(dogSize);
+
+                    addUserTo_DataBase();
                 }
+            }
+        });
+
+
+
+        PriceSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            int prograss=0;
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                prograss=i;
+                PriceTV.setText(prograss+" $");
+
+                price=prograss;
+
+
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
 
@@ -184,11 +239,24 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mDatabase.child("Users").child(user.getUserId()).child("UserName").setValue(user.getFirstName());
+        mDatabase.child("Users").child(user.getUserId()).child("isDogWalker").setValue(user.isDogWalker());
+        mDatabase.child("Users").child(user.getUserId()).child("Gender").setValue(user.getGender());
+        mDatabase.child("Users").child(user.getUserId()).child("Age").setValue(user.getAge());
 
-        mDatabase.child("Users").child(user.getUserId()).child("Phone").setValue(user.getPhoneNumber());
+        if (user.isDogWalker()) {
 
-        mDatabase.child("Users").child(user.getUserId()).child("Email").setValue(user.getEmail());
+
+
+            mDatabase.child("Users").child(user.getUserId()).child("DogWalker").child("Price").setValue(user.dogWalker.getPrice());
+
+            mDatabase.child("Users").child(user.getUserId()).child("DogWalker").child("About me").setValue(user.dogWalker.getAboutMe());
+
+            mDatabase.child("Users").child(user.getUserId()).child("DogWalker").child("Experience").setValue(user.dogWalker.getExperience());
+
+            mDatabase.child("Users").child(user.getUserId()).child("DogWalker").child("DogsType").setValue(user.dogWalker.getTypeOfDogs());
+
+
+        }
 
        // Log.d(TAG_New_User, "Add user to dataBase:success");
 
@@ -255,7 +323,23 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
             return true;
         }
 
+
+
         return false;
 
+    }
+
+
+    private String GetGender()
+    {
+        if(isFemale)
+        {
+            return "Female";
+        }
+        else if(isMale)
+        {
+            return "Male";
+        }
+        else return null;
     }
 }

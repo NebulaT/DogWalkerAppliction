@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+
+        <Button
+            android:id="@+id/createNewAccButton"
+            android:layout_width="312dp"
+            android:layout_height="54dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/DimGray"
+            android:fontFamily="monospace"
+            android:gravity="center_vertical|center"
+            android:text="Create New Account"
+            android:textAllCaps="false"
+            android:textColor="@color/AliceBlue"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="110dp"
+            android:layout_height="61dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:text="Log In"
+            android:textColor="#808080"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/petPhotView"
+            android:layout_width="0dp"
+            android:layout_height="319dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginButton"
+            app:layout_constraintVertical_bias="0.012"
+            app:srcCompat="@drawable/image" />
+
+        <TextView
+            android:id="@+id/welcomeTextView"
+            android:layout_width="265dp"
+            android:layout_height="116dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Welcome to Nebula"
+            android:textColor="@color/Azure"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/petPhotView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/petPhotView"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="378dp"
+            android:layout_height="111dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="here you can find\n Dog walkers and Pet sitting\n in your own area !"
+            android:textColor="@color/Azure"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/petPhotView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcomeTextView"
+            app:layout_constraintVertical_bias="0.952" />
+
+        <Button
+            android:id="@+id/facebookLoginButton"
+            style="@style/FirebaseUI.Button.AccountChooser.FacebookButton"
+            android:layout_width="312dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/com_facebook_blue"
+            android:fontFamily="monospace"
+            android:gravity="center_horizontal|center"
+            android:text="@string/com_facebook_loginview_log_in_button_long"
+            android:textColor="@color/AliceBlue"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createNewAccButton"
+            tools:text="@string/com_facebook_loginview_log_in_button_long" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/choicePageImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:background="@color/Black"
+        android:padding="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.545" />
+
+    <Button
+        android:id="@+id/dogWalkerButton"
+        android:layout_width="116dp"
+        android:layout_height="83dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:text="I am a Dog Walker"
+        android:textColor="@color/DarkGray"
+        app:layout_constraintBottom_toBottomOf="@+id/choicePageImageView"
+        app:layout_constraintEnd_toEndOf="@+id/choicePageImageView"
+        app:layout_constraintHorizontal_bias="0.848"
+        app:layout_constraintStart_toStartOf="@+id/choicePageImageView"
+        app:layout_constraintTop_toTopOf="@+id/choicePageImageView"
+        app:layout_constraintVertical_bias="0.87" />
+
+    <Button
+        android:id="@+id/dogOwnerButton"
+        android:layout_width="116dp"
+        android:layout_height="83dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:text="I am a Dog Owner"
+        android:textColor="@color/DarkGray"
+        app:layout_constraintBottom_toBottomOf="@+id/choicePageImageView"
+        app:layout_constraintEnd_toEndOf="@+id/choicePageImageView"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toStartOf="@+id/choicePageImageView"
+        app:layout_constraintTop_toTopOf="@+id/choicePageImageView"
+        app:layout_constraintVertical_bias="0.87" />
+
+    <TextView
+        android:id="@+id/selectServiceView"
+        android:layout_width="146dp"
+        android:layout_height="83dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="top|center"
+        android:text="Select the service that you need"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/choicePageImageView"
+        app:layout_constraintEnd_toEndOf="@+id/choicePageImageView"
+        app:layout_constraintStart_toStartOf="@+id/choicePageImageView"
+        app:layout_constraintTop_toTopOf="@+id/choicePageImageView" />
+
+</android.support.constraint.ConstraintLayout>

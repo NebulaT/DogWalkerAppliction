@@ -1,10 +1,11 @@
 package com.example.nibulateam.dogwalkerappliction.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class User {
+public class User implements Serializable {
 
     private  String userID;
     private String firstName;
@@ -16,7 +17,7 @@ public class User {
     private  boolean isDogOwner;
     private String phoneNumber;
     //pic//
-    private DogWalker dogWalker;
+    protected DogWalker dogWalker;
     //dogOwner//
 
 
@@ -39,7 +40,6 @@ public class User {
     public String getPassword() {
         return password;
     }
-
 
 
     public String getEmail() {
@@ -65,6 +65,7 @@ public class User {
         if (isDogWalker== true)
         {
             this.dogWalker=new DogWalker();
+
         }
 
 

@@ -47,7 +47,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/welcomeImageView"
+        android:id="@+id/petPhotView"
         android:layout_width="0dp"
         android:layout_height="319dp"
         android:layout_marginBottom="8dp"
@@ -76,10 +76,10 @@
         android:text="Welcome to Nebula"
         android:textColor="@color/Azure"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/welcomeImageView"
+        app:layout_constraintBottom_toBottomOf="@+id/petPhotView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/welcomeImageView"
+        app:layout_constraintTop_toTopOf="@+id/petPhotView"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -96,7 +96,7 @@
         android:text="here you can find\n Dog walkers and Pet sitting\n in your own area !"
         android:textColor="@color/Azure"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/welcomeImageView"
+        app:layout_constraintBottom_toBottomOf="@+id/petPhotView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nibulateam.dogwalkerappliction.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -54,7 +55,6 @@ public class DogOwnerActivity extends AppCompatActivity{
         petNamePlain=(EditText)findViewById(R.id.petNamePlain);
         nextButton=(Button)findViewById(R.id.nextButton);
         addPhotoButton=(Button)findViewById(R.id.addPhotoButton);
-        petName=petNamePlain.getText().toString();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -70,7 +70,15 @@ public class DogOwnerActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
+                petName=petNamePlain.getText().toString();
 
+                Intent selectPhotoName_Intent=new Intent(getApplicationContext(), SelectBreedActivity.class);
+                selectPhotoName_Intent.putExtra("petName",petName);
+                selectPhotoName_Intent.putExtra("petPhoto",tempImage.toString());
+
+                startActivity(selectPhotoName_Intent);
+
+                /*move to next page - to select breed of a dog*/
             }
         });
 

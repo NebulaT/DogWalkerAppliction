@@ -21,10 +21,18 @@ import android.widget.Toast;
 
 import com.example.nibulateam.dogwalkerappliction.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
 public class DogWalker_RegisterActivity extends AppCompatActivity {
+
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    private DatabaseReference mDatabase;
 
 
     private static final String TAG_DATE="Dog_Walker_register";
@@ -173,6 +181,16 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
     }
 
     private void addUserTo_DataBase() {
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mDatabase.child("Users").child(user.getUserId()).child("UserName").setValue(user.getFirstName());
+
+        mDatabase.child("Users").child(user.getUserId()).child("Phone").setValue(user.getPhoneNumber());
+
+        mDatabase.child("Users").child(user.getUserId()).child("Email").setValue(user.getEmail());
+
+       // Log.d(TAG_New_User, "Add user to dataBase:success");
 
 
 

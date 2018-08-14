@@ -1,5 +1,6 @@
 package com.example.nibulateam.dogwalkerappliction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nibulateam.dogwalkerappliction.Model.DogOwner;
 import com.example.nibulateam.dogwalkerappliction.Model.Input;
 import com.example.nibulateam.dogwalkerappliction.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +31,9 @@ public class NewAccountActivity extends AppCompatActivity {
     private String phone;
     private String name;
     private String userId;
+    private Intent getUserChoice;
+    private String userChoiceString;
+
 
     private static String TAG_New_User="New user";
 
@@ -65,25 +70,39 @@ public class NewAccountActivity extends AppCompatActivity {
         PhoneET=(EditText)findViewById(R.id.phonePlain);
 
 
-
+        getUserChoice=getIntent();
+        userChoiceString=getUserChoice.getStringExtra("choice");
 
         creatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 boolean check=checkInput();
-              if(check==true)
-              {
-              email=EmailET.getText().toString();
-              password=PasswordET.getText().toString();
-              phone=PhoneET.getText().toString();
-              name=NameET.getText().toString();
-              signUpNewUsersWithEmail();
+                if(check==true)
+                {
+                    email=EmailET.getText().toString();
+                    password=PasswordET.getText().toString();
+                    phone=PhoneET.getText().toString();
+                    name=NameET.getText().toString();
+                    signUpNewUsersWithEmail();
 
-        }
-        else {
-                  Toast.makeText(NewAccountActivity.this, "Authentication failed.",
-                          Toast.LENGTH_SHORT).show();
+                    //Intent intent=new Intent(NewAccountActivity.this,User.class);
+                    //intent.putExtra("user",user);
+
+                    if(userChoiceString.equals("DogWalker"))
+                    {
+                        user.isDogWalker();
+                        //Intent dogWalkerCreationIntent=new Intent(getApplicationContext())
+                    }
+                    else if(userChoiceString.equals("DogOwner"))
+                    {
+                        user.isDogOwner();
+                        Intent dogOwnerCreationIntent=new Intent(getApplicationContext(),DogOwner.class);
+                    }
+
+              }
+                 else {
+                    Toast.makeText(NewAccountActivity.this, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
               }
 
             }

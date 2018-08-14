@@ -6,7 +6,11 @@
     <!-- Twitter consumer key and secret -->
     <string name="twitter_consumer_key" translatable="false">YOUR_CONSUMER_KEY</string>
     <string name="twitter_consumer_secret" translatable="false">YOUR_CONSUMER_SECRET</string>
-
+    <string-array name="dog_breeds_array">
+        <item>Pug</item>
+        <item>Boxer</item>
+        <item>German Sheperd</item>
+    </string-array>
 
 
 

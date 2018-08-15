@@ -18,6 +18,13 @@ android {
     }
 }
 
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //noinspection GradleCompatible
@@ -36,6 +43,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.google.android.gms:play-services-auth:15.0.1'
 
+
+    //implementation 'com.github.markushi:circlebutton:1.1'
 
 
 }

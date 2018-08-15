@@ -12,7 +12,7 @@ public class User implements Serializable {
     private String lastName;
     private String password;
     private String email;
-    private Date age;
+    private String age;
     private String gender;
     private boolean isDogWalker;
     private  boolean isDogOwner;
@@ -57,11 +57,11 @@ public class User implements Serializable {
     }
 
 
-    public Date getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(Date age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -119,7 +119,11 @@ public class User implements Serializable {
         firstName=Name;
         phoneNumber=Phone;
     }
-    public User(String UserID,String Email,String Password,String FirstName,String LastName,Date Age,boolean isDogOwner,boolean isDogWalker)
+    public User()
+    {
+
+    }
+    public User(String UserID,String Email,String Password,String FirstName,String LastName,String Age,boolean isDogOwner,boolean isDogWalker)
     {
         userID=UserID;
         email=Email;
@@ -156,6 +160,8 @@ public Map<String,Object> toMap()
     return result;
 
 }
+
+
 
 
 

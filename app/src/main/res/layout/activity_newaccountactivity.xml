@@ -133,6 +133,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword|numberPassword"
+            android:password="true"
             android:textColorLink="#FFA9A9A9" />
 
         <Button

@@ -1,7 +1,6 @@
 package com.example.nibulateam.dogwalkerappliction;
 
 import android.app.DatePickerDialog;
-import android.app.IntentService;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -26,26 +25,24 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
-public class DogWalker_RegisterActivity extends AppCompatActivity {
+public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private DatabaseReference mDatabase;
 
-
+    private static final String TAG_New_User="New_User_Account";
     private static final String TAG_DATE="Dog_Walker_register";
     private Intent intent;
-    private Button SelectDateButton,DoneButton;
+    private Button SelectDateButton,NextButton;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private CheckBox SmallD,MediumD,LargeD;
-    private EditText ExprianceET,AboutMeET;
+
     private SeekBar PriceSeekbar;
-    private TextView UserNameTV;
+    private TextView UserNameTV,BirthdayTV;
     private TextView PriceTV;
     private int year,month,day;
     private User user;
@@ -69,28 +66,27 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_dogwalker);
+        setContentView(R.layout.activity_register_dogwalker_page01);
 
 
         intent=getIntent();
         user=(User)intent.getSerializableExtra("user");
-        mAuth = FirebaseAuth.getInstance();
-
-        Toast.makeText(DogWalker_RegisterActivity.this,user.getEmail(),Toast.LENGTH_SHORT).show();
 
 
-    SelectDateButton=(Button)findViewById(R.id.SelectDatebutton);
+
+        isInputBirthDay=false;
+
+         SelectDateButton=(Button)findViewById(R.id.SelectDatebutton);
         SmallD=(CheckBox)findViewById(R.id.SmallCheckBox);
         MediumD=(CheckBox)findViewById(R.id.MediumCheckBox);
         LargeD=(CheckBox)findViewById(R.id.LacheckBox);
         MaleRB=(RadioButton)findViewById(R.id.MaleRadioButton);
         FemaleRB=(RadioButton)findViewById(R.id.FemaleRadioButton);
-        ExprianceET=(EditText)findViewById(R.id.ExpEditText);
-        DoneButton=(Button)findViewById(R.id.Donebutton);
+        NextButton=(Button)findViewById(R.id.Nextbutton);
         PriceSeekbar=(SeekBar)findViewById(R.id.PriceSeekBar);
         PriceTV=(TextView)findViewById(R.id.ShowPricetextView);
         UserNameTV=(TextView)findViewById(R.id.userNameTextView) ;
-        AboutMeET=(EditText)findViewById(R.id.AboutMeEditText);
+        BirthdayTV=(TextView)findViewById(R.id.birthdayTextView);
 
         PriceTV.setText("0$");
 
@@ -107,7 +103,10 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
             Log.d(TAG_DATE,"BirthdaySet :"+i+"/"+i1+"/"+i2);
-
+            String m=String.valueOf(i1);
+            String y=String.valueOf(i);
+            String d=String.valueOf(i2);
+            BirthdayTV.setText(d+'/'+m+'/'+y);
             isInputBirthDay=true;
         }
     };
@@ -122,7 +121,6 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
                     FemaleRB.setChecked(false);
                     isMale=true;
                     isFemale=false;
-
                 }
             }
         });
@@ -147,6 +145,7 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
                 if(SmallD.isChecked())
                 {
                   setDogSize("Small");
+                    isInputDogSize=true;
                 }
                 if(!SmallD.isChecked())
                 {
@@ -161,6 +160,7 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
                 if(MediumD.isChecked())
                 {
                     setDogSize("Medium");
+                    isInputDogSize=true;
                 }
                 if(!MediumD.isChecked())
                 {
@@ -175,6 +175,7 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
                 if(LargeD.isChecked())
                 {
                     setDogSize("Large");
+                    isInputDogSize=true;
                 }
                 if(!LargeD.isChecked())
                 {
@@ -186,21 +187,27 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
 
 
 
-        DoneButton.setOnClickListener(new View.OnClickListener() {
+        NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkInput()==true)
+
+                checkInput();
+
+                if( isInputBirthDay==true && isInputDogSize==true && isInputGender==true)
                 {
-                    Exp=ExprianceET.getText().toString();
-                    AboutMe=AboutMeET.getText().toString();
-                    // user.setAge(new Date(year,month,day));
+                    user.setAge(BirthdayTV.getText().toString());
                     user.dogWalker.setPrice(price);
                     user.dogWalker.setAboutMe(AboutMe);
                     user.dogWalker.setExperience(Exp);
                     user.setGender(GetGender());
                     user.dogWalker.setTypeOfDogs(dogSize);
 
-                    addUserTo_DataBase();
+
+                    Intent dogWalkerCreationIntent=new Intent(getApplicationContext(),DogWalker_Register_Page02_Activity.class);
+                    dogWalkerCreationIntent.putExtra("user",user);
+                    startActivity(dogWalkerCreationIntent);
+
+
                 }
             }
         });
@@ -235,34 +242,7 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void addUserTo_DataBase() {
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        mDatabase.child("Users").child(user.getUserId()).child("isDogWalker").setValue(user.isDogWalker());
-        mDatabase.child("Users").child(user.getUserId()).child("Gender").setValue(user.getGender());
-        mDatabase.child("Users").child(user.getUserId()).child("Age").setValue(user.getAge());
-
-        if (user.isDogWalker()) {
-
-
-
-            mDatabase.child("Users").child(user.getUserId()).child("DogWalker").child("Price").setValue(user.dogWalker.getPrice());
-
-            mDatabase.child("Users").child(user.getUserId()).child("DogWalker").child("About me").setValue(user.dogWalker.getAboutMe());
-
-            mDatabase.child("Users").child(user.getUserId()).child("DogWalker").child("Experience").setValue(user.dogWalker.getExperience());
-
-            mDatabase.child("Users").child(user.getUserId()).child("DogWalker").child("DogsType").setValue(user.dogWalker.getTypeOfDogs());
-
-
-        }
-
-       // Log.d(TAG_New_User, "Add user to dataBase:success");
-
-
-
-    }
 
 
     private void ChooseBirthday()
@@ -273,7 +253,7 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
          day=calendar.get(Calendar.DAY_OF_MONTH);
 
 
-        DatePickerDialog datePickerDialog=new DatePickerDialog(DogWalker_RegisterActivity.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDateSetListener,year,month,day);
+        DatePickerDialog datePickerDialog=new DatePickerDialog(DogWalker_Register_Page01_Activity.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDateSetListener,year,month,day);
 
         datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         datePickerDialog.show();
@@ -283,6 +263,7 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
     {
         if(dogSize!=null)
         {
+            dogSize+="+";
             dogSize+=size;
         }
         else
@@ -298,7 +279,7 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private boolean checkInput()
+    private void checkInput()
     {
 
         if(isMale==true || isFemale==true)
@@ -307,7 +288,8 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(DogWalker_RegisterActivity.this,"Please choose gender",Toast.LENGTH_SHORT).show();
+            Toast.makeText(DogWalker_Register_Page01_Activity.this,"Please choose gender",Toast.LENGTH_SHORT).show();
+            isInputGender=false;
         }
         if(SmallD.isChecked() || LargeD.isChecked() || MediumD.isChecked())
         {
@@ -315,17 +297,23 @@ public class DogWalker_RegisterActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(DogWalker_RegisterActivity.this,"Please choose dog type",Toast.LENGTH_SHORT).show();
+            Toast.makeText(DogWalker_Register_Page01_Activity.this,"Please choose dog type",Toast.LENGTH_SHORT).show();
+            isInputDogSize=false;
 
         }
-        if(isInputBirthDay==true && isInputDogSize==true && isInputGender==true)
+        if(isInputBirthDay==false)
         {
-            return true;
+            Toast.makeText(DogWalker_Register_Page01_Activity.this,"Please Enter your birthday",Toast.LENGTH_SHORT).show();
+
         }
 
 
 
-        return false;
+
+
+
+
+
 
     }
 

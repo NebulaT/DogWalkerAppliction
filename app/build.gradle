@@ -34,6 +34,8 @@ dependencies {
    // implementation 'com.facebook.android:account-kit-sdk:4.+'
     implementation 'com.facebook.android:facebook-login:[4,5)'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.google.android.gms:play-services-auth:15.0.1'
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.example.nibulateam.dogwalkerappliction;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,10 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nibulateam.dogwalkerappliction.Model.DogOwner;
 import com.example.nibulateam.dogwalkerappliction.Model.Input;
 import com.example.nibulateam.dogwalkerappliction.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,6 +40,7 @@ public class NewAccountActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private DatabaseReference mDatabase;
+    private ProgressDialog progressDialog;
 
 
     //ui//
@@ -105,11 +105,18 @@ public class NewAccountActivity extends AppCompatActivity {
 
 
     private void signUpNewUsersWithEmail() {
+
+        progressDialog=new ProgressDialog(this);
+
+        progressDialog.setMessage("Register...");
+
+
         if (email.equals(null) || password.equals(null)) {
             Toast.makeText(NewAccountActivity.this, "Authentication failed - Email or password",
                     Toast.LENGTH_SHORT).show();
         }
         else {
+            progressDialog.show();
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -118,12 +125,14 @@ public class NewAccountActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG_New_User, "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                progressDialog.dismiss();
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG_New_User, "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(NewAccountActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
                                 updateUI(null);
                             }
 
@@ -144,14 +153,16 @@ public class NewAccountActivity extends AppCompatActivity {
             userId=user.getUid();
 
             this.user=new User(userId,name,email,password,phone);
-            addUserDataTo_DataBase(this.user);
+           // addUserDataTo_DataBase(this.user);
             Log.d(TAG_New_User, "NewUserWithEmail:success");
+
+
             //next page!//
 
             if(userChoiceString.equals("DogWalker"))
             {
                 this.user.setDogWalker();
-                Intent dogWalkerCreationIntent=new Intent(getApplicationContext(),DogWalker_RegisterActivity.class);
+                Intent dogWalkerCreationIntent=new Intent(getApplicationContext(),DogWalker_Register_Page01_Activity.class);
                 dogWalkerCreationIntent.putExtra("user",this.user);
                 startActivity(dogWalkerCreationIntent);
             }

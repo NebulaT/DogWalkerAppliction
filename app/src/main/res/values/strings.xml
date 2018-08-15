@@ -13,10 +13,12 @@
     </string-array>
 
 
-
+<string name="GoogleSignIn">Continue with Google</string>
     <string name="ACCOUNT_KIT_CLIENT_TOKEN">[ACCOUNT_KIT_CLIENT_TOKEN]</string>
 
-    <string name="Dog_Expirence">Tell us About your Expirence with dogs</string>
+    <!--dogwalker page02-->
+    <string name="DogWalker_Expirence">Tell us About your Expirence with dogs (Optinal).</string>
+    <string name="DogWalker_Aboutme">Tell us something about you (Optinal).</string>
 
 
 </resources>

@@ -32,7 +32,7 @@ public class SelectBreedActivity extends AppCompatActivity {
     private EditText breedPlain;
     private TextView addPetTextView;
     private Button nextButton;
-
+    private Button breedButton;
 
 
     @Override
@@ -46,8 +46,9 @@ public class SelectBreedActivity extends AppCompatActivity {
         addPetView=(ImageView)findViewById(R.id.PetPhotoView);
         typeQuestionTextView=(TextView)findViewById(R.id.typeQuestionTextView);
         addPetTextView=(TextView)findViewById(R.id.addPetTextView);
-        breedPlain=(EditText)findViewById(R.id.breedPlain);
+        //breedPlain=(EditText)findViewById(R.id.breedPlain);
         nextButton=(Button)findViewById(R.id.nextButton);
+        breedButton=(Button)findViewById(R.id.breedButton);
 
 
         dogName = intent.getStringExtra("petName");
@@ -58,7 +59,7 @@ public class SelectBreedActivity extends AppCompatActivity {
         PetPhotoView.setImageURI(dogPhoto); //Set previous selected photo- to this page
 
 
-        breedPlain.setOnClickListener(new View.OnClickListener() {
+        breedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent selectBreedIntent=new Intent(getApplicationContext(),BreedListActivity.class);

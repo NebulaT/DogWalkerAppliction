@@ -152,7 +152,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PriceSeekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/Avabutton" />
 
     <TextView
         android:id="@+id/priceTextView"
@@ -211,5 +211,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/SelectDatebutton"
         app:layout_constraintStart_toEndOf="@+id/SelectDatebutton"
         app:layout_constraintTop_toBottomOf="@+id/AgetextView" />
+
+    <Button
+        android:id="@+id/Avabutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/White"
+        android:text="@string/avaliabilityButton"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PriceSeekBar" />
 
 </android.support.constraint.ConstraintLayout>

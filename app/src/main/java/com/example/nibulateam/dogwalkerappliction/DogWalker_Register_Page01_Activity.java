@@ -37,7 +37,7 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
     private static final String TAG_New_User="New_User_Account";
     private static final String TAG_DATE="Dog_Walker_register";
     private Intent intent;
-    private Button SelectDateButton,NextButton;
+    private Button SelectDateButton,NextButton,AvaButton;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private CheckBox SmallD,MediumD,LargeD;
 
@@ -87,6 +87,7 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
         PriceTV=(TextView)findViewById(R.id.ShowPricetextView);
         UserNameTV=(TextView)findViewById(R.id.userNameTextView) ;
         BirthdayTV=(TextView)findViewById(R.id.birthdayTextView);
+        AvaButton=(Button)findViewById(R.id.Avabutton);
 
         PriceTV.setText("0$");
 
@@ -240,6 +241,14 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
         });
 
 
+        AvaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Showavailability();
+            }
+        });
+
+
     }
 
 
@@ -329,5 +338,10 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
             return "Male";
         }
         else return null;
+    }
+
+    private void Showavailability()
+    {
+startActivity(new Intent(DogWalker_Register_Page01_Activity.this,Avaliability_Dogwalker_Activity.class));
     }
 }

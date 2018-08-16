@@ -10,4 +10,13 @@
 
     </style>
 
+<style name="Avaliability_popup">
+
+    <item name="colorPrimary">@color/DarkGray</item>
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowCloseOnTouchOutside">true</item>
+
+
+</style>
+
 </resources>

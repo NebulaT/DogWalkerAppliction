@@ -36,8 +36,8 @@ public class BreedListActivity extends AppCompatActivity{
 
         breedTextView=(TextView)findViewById(R.id.breedTextView);
         breedImageView=(ImageView)findViewById(R.id.breedImageView);
-        breedName=(TextView)findViewById(R.id.breedName);
-        imageDog=(ImageButton)findViewById(R.id.imageDog);
+     //   breedName=(TextView)findViewById(R.id.breedName);
+       // imageDog=(ImageButton)findViewById(R.id.imageDog);
 
 
 

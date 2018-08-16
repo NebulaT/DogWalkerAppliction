@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Choose Days"
+    android:layout_gravity="center"
+    android:textColor="@color/black"
+    android:textSize="24sp"
+    />
+
+
+    <TableLayout
+
+        android:layout_marginTop="150dp"
+        android:id="@+id/Table1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/LightGrey"
+
+        >
+        <TableRow
+            android:id="@+id/row1"
+            >
+            <TextView
+                android:id="@+id/BlankTextview"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+               android:background="@color/white"
+                android:text=""
+                android:textSize="24sp"
+                />
+            <TextView
+                android:id="@+id/SunTextview"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/Sun"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="0dp"
+                android:textSize="24sp"
+                />
+            <TextView
+                android:id="@+id/MonTextview"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/Mon"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                />
+            <TextView
+                android:id="@+id/TueTextview"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/Tue"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                />
+
+            <TextView
+                android:id="@+id/WedTextview"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/Wed"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                />
+
+            <TextView
+                android:id="@+id/ThuTextview"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/Thu"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                />
+
+            <TextView
+                android:id="@+id/FriTextview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Fri"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_weight="1"
+                android:gravity="center"
+
+
+
+                />
+
+            <TextView
+                android:id="@+id/SatTextview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/Sat"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                />
+
+
+
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/MorningTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="left"
+                android:layout_marginTop="2dp"
+                android:text="@string/Morning"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:layout_weight="1"
+
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava00"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava01"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava02"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava03"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava04"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava05"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava06"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+
+                android:gravity="center"
+
+                />
+        </TableRow>
+
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/NoonTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="left"
+                android:layout_marginTop="2dp"
+                android:text="@string/Noon"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:layout_weight="1"
+
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava13"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava15"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+
+                android:gravity="center"
+
+                />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/AfNoonTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="left"
+                android:layout_marginTop="2dp"
+                android:text="@string/Afternoon"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:layout_weight="1"
+
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava21"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava22"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava23"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava24"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava25"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava26"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+
+                android:gravity="center"
+
+                />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/EveningTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="left"
+                android:layout_marginTop="2dp"
+                android:text="@string/Evening"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:layout_weight="1"
+
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava30"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava31"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava32"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava33"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava34"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava35"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava36"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+
+                android:gravity="center"
+
+                />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/NightTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="left"
+                android:layout_marginTop="2dp"
+                android:text="@string/Night"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:layout_weight="1"
+
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava40"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava41"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava42"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava43"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava44"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava45"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:layout_weight="1"
+
+
+                />
+            <ImageButton
+                android:id="@+id/ava46"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+
+                android:gravity="center"
+
+                />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/doneAvaButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Done"
+        android:textAllCaps="false"
+
+        android:textColor="@color/black" />
+
+</LinearLayout>

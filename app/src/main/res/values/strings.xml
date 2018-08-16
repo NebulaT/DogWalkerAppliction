@@ -21,4 +21,23 @@
     <string name="DogWalker_Aboutme">Tell us something about you (Optinal).</string>
 
 
+
+    <!--avaliability calnder-->
+
+    <string name="avaliabilityButton">set avaliability</string>
+    <string name="Sun">S</string>
+    <string name="Mon">M</string>
+    <string name="Thu">T</string>
+    <string name="Fri">F</string>
+    <string name="Sat">S</string>
+    <string name="Tue">T</string>
+    <string name="Wed">W</string>
+
+    <string name="Morning">Morning</string>
+    <string name="Night">Night</string>
+    <string name="Evening">Evening</string>
+    <string name="Noon">Noon</string>
+    <string name="Afternoon">Afternoon</string>
+
+
 </resources>

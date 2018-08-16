@@ -8,7 +8,7 @@ import java.util.Map;
 public class User implements Serializable {
 
     private  String userID;
-    private String firstName;
+    private String userName;
     private String lastName;
     private String password;
     private String email;
@@ -32,11 +32,11 @@ public class User implements Serializable {
 
 
     public String getFirstName() {
-        return firstName;
+        return userName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.userName = firstName;
     }
 
     public String getLastName() {
@@ -56,6 +56,13 @@ public class User implements Serializable {
         return email;
     }
 
+    public  void setEmail(String Email)
+    {
+    if(!Email.equals(null))
+    {
+        this.email=Email;
+    }
+    }
 
     public String getAge() {
         return age;
@@ -116,7 +123,7 @@ public class User implements Serializable {
         userID=UserID;
         email=Email;
         password=Password;
-        firstName=Name;
+        userName=Name;
         phoneNumber=Phone;
     }
     public User()
@@ -128,7 +135,7 @@ public class User implements Serializable {
         userID=UserID;
         email=Email;
         password=Password;
-        firstName=FirstName;
+        userName=FirstName;
         lastName=LastName;
         age=Age;
         this.isDogOwner=isDogOwner;
@@ -150,7 +157,7 @@ public Map<String,Object> toMap()
     HashMap<String, Object> result = new HashMap<>();
 
     result.put("User Id",userID);
-    result.put("FirstName",firstName);
+    result.put("userName",userName);
     result.put("LastName",lastName);
     result.put("Email",email);
     result.put("Age",age.toString());

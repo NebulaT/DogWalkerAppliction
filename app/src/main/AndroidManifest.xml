@@ -102,10 +102,14 @@
 
         <activity android:name=".DogWalker_Register_Page02_Activity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".Avaliability_Dogwalker_Activity" android:theme="@style/Avaliability_popup">
+
+
         </activity>
 
 

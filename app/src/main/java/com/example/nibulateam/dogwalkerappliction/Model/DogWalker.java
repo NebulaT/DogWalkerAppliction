@@ -9,8 +9,15 @@ private  float price;
 private String aboutMe;
 private String experience;
 private String typeOfDogs;
+private String[][]avaliability;
 
-//avaliability//
+    public String[][] getAvaliability() {
+        return avaliability;
+    }
+
+    public void setAvaliability(String[][] avaliability) {
+        this.avaliability = avaliability;
+    }
 
     public   DogWalker()
     {

@@ -1,6 +1,8 @@
 package com.example.nibulateam.dogwalkerappliction;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -30,6 +32,8 @@ public class DogOwnerActivity extends AppCompatActivity{
     private Intent intent;
     private User user;
     private Button addPhotoButton;
+    private Button rotateButton;
+
 
     private String petName;
 
@@ -37,8 +41,10 @@ public class DogOwnerActivity extends AppCompatActivity{
     private FirebaseUser currentUser;
     private DatabaseReference mDatabase;
 
-    private Uri tempImage;
+    private Uri tempImage=null;
     private static final int PICK_IMAGE=100;
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +53,6 @@ public class DogOwnerActivity extends AppCompatActivity{
         intent=getIntent();
         user=(User)intent.getSerializableExtra("user");
 
-
         addPetView=(ImageView)findViewById(R.id.addPetView);
         addPetPhotoView=(ImageView)findViewById(R.id.addPetPhotoView);
         PetNameTextView=(TextView)findViewById(R.id.PetNameTextView);
@@ -55,8 +60,17 @@ public class DogOwnerActivity extends AppCompatActivity{
         petNamePlain=(EditText)findViewById(R.id.petNamePlain);
         nextButton=(Button)findViewById(R.id.nextButton);
         addPhotoButton=(Button)findViewById(R.id.addPhotoButton);
+        rotateButton=(Button)findViewById(R.id.rotateButton);
 
         mAuth = FirebaseAuth.getInstance();
+
+        rotateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                addPetPhotoView.setRotation(addPetPhotoView.getRotation()+90);
+            }
+        });
 
         addPhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,9 +86,17 @@ public class DogOwnerActivity extends AppCompatActivity{
 
                 petName=petNamePlain.getText().toString();
 
+
+
                 Intent selectPhotoName_Intent=new Intent(getApplicationContext(), SelectBreedActivity.class);
                 selectPhotoName_Intent.putExtra("petName",petName);
-                selectPhotoName_Intent.putExtra("petPhoto",tempImage.toString());
+                if(tempImage!=null){
+                    selectPhotoName_Intent.putExtra("petPhoto", tempImage.toString());
+                }
+                else {
+                    selectPhotoName_Intent.putExtra("petPhoto", "EmptyValue");
+
+                }
 
                 startActivity(selectPhotoName_Intent);
 
@@ -100,5 +122,7 @@ public class DogOwnerActivity extends AppCompatActivity{
             tempImage=data.getData();
             addPetPhotoView.setImageURI(tempImage);
         }
+
+
     }
 }

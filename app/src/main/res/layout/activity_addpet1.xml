@@ -50,14 +50,14 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="0dp"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
+            android:scaleType="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/loginButton"
             app:layout_constraintVertical_bias="0.012"
-            app:srcCompat="@drawable/image" />
+            app:srcCompat="@drawable/sittingdog" />
 
         <TextView
             android:id="@+id/PetNameTextView"
@@ -101,7 +101,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintVertical_bias="0.015" />
 
     <Button
         android:id="@+id/nextButton"
@@ -123,6 +123,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.983" />
+
+    <Button
+        android:id="@+id/rotateButton"
+        android:layout_width="35dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/fui_transparent"
+        android:drawableRight="@android:drawable/ic_menu_rotate"
+        android:duration="0"
+        android:fillAfter="true"
+        android:fromDegrees="0"
+        android:pivotX="50%"
+        android:toDegrees="-90"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.089" />
 
 
 </android.support.constraint.ConstraintLayout>

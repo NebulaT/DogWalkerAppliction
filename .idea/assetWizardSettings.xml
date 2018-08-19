@@ -51,7 +51,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="112" />
+                                                <entry key="scalingPercent" value="0" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -62,7 +62,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="42" />
+                                                <entry key="scalingPercent" value="67" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -74,7 +74,7 @@
                                     <map>
                                       <entry key="backgroundColor" value="4a55d0" />
                                       <entry key="backgroundImage" value="C:\Users\itsba\Desktop\ui app\Dogs\gradient-wallpaper-26036-26721-hd-wallpapers.jpg.png" />
-                                      <entry key="foregroundImage" value="C:\Users\itsba\Desktop\ui app\Dogs\white\bulldog (6).png" />
+                                      <entry key="foregroundImage" value="C:\Users\itsba\Desktop\ui app\Dogs\Dog5\logo for app.png" />
                                       <entry key="foregroundLayerName" value="dog4" />
                                       <entry key="legacyIconShape" value="CIRCLE" />
                                       <entry key="webIconShape" value="CIRCLE" />

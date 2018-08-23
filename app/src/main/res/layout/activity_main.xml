@@ -81,7 +81,6 @@
             android:layout_marginStart="8dp"
             android:foregroundGravity="center"
             android:paddingTop="5dp"
-            app:buttonSize="@string/GoogleSignIn"
             app:colorScheme="light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

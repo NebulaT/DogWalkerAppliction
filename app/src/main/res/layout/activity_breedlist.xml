@@ -8,10 +8,95 @@
 
 
     <ImageView
+        android:id="@+id/topImageView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:color/darker_gray" />
+
+    <EditText
+        android:id="@+id/searchBarTextView"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_gravity="top"
+        android:layout_weight="1"
+        android:drawableRight="@android:drawable/ic_menu_search"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="Search breed...."
+        android:inputType="text"
+        android:requiresFadingEdge="none"
+        android:windowSoftInputMode="stateHidden"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topImageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBarTextView">
+
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+
+        </ListView>
+
+
+    </LinearLayout>
+
+    <ImageView
         android:id="@+id/bottomImageView"
-        android:layout_width="387dp"
-        android:layout_height="103dp"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
         android:layout_margin="0dp"
+        android:layout_weight="1"
+        android:foregroundGravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toTopOf="@+id/bottomImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topImageView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/selectButton"
+        android:layout_width="299dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -19,82 +104,35 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
-        android:foregroundGravity="bottom"
+        android:background="@color/gray"
+        android:text="DONE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@android:color/white" />
+        app:layout_constraintTop_toTopOf="@+id/bottomImageView"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
-
-
-        <ImageView
-            android:id="@+id/topImageView"
-            android:layout_width="match_parent"
-            android:layout_height="59dp"
-            android:layout_weight="1"
-            app:srcCompat="@android:color/darker_gray" />
-
-        <EditText
-            android:id="@+id/searchBarTextView"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:layout_gravity="top"
-            android:layout_weight="1"
-            android:drawableRight="@android:drawable/ic_menu_search"
-            android:ems="10"
-            android:enabled="true"
-
-            android:hint="Search breed...."
-            android:inputType="text"
-            android:requiresFadingEdge="none"
-            android:windowSoftInputMode="stateHidden" />
-
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="413dp"
-            android:layout_height="351dp"
-            android:layout_gravity="bottom">
-
-
-        </ListView>
-
-
-        <TextView
-            android:id="@+id/divider"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray" />
-
-        <CheckBox
-            android:id="@+id/mixedBreedCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:foregroundGravity="right|center"
-            android:gravity="left|center"
-            android:text="Mixed Breed" />
-
-        <Button
-            android:id="@+id/selectButton"
-            android:layout_width="299dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:background="@color/DarkGray"
-            android:text="DONE" />
-
-
-    </LinearLayout>
+    <CheckBox
+        android:id="@+id/mixedBreedCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:foregroundGravity="right|center"
+        android:gravity="left|center"
+        android:text="Mixed Breed"
+        app:layout_constraintBottom_toTopOf="@+id/selectButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottomImageView"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </android.support.constraint.ConstraintLayout>

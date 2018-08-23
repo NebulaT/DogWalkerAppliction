@@ -19,7 +19,6 @@ import org.w3c.dom.Text;
 public class SelectBreedActivity extends AppCompatActivity {
 
     private User user;
-    //private Intent intent;
     private String dogName;
     private Uri dogPhoto;
 
@@ -50,9 +49,9 @@ public class SelectBreedActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
-        dogName = intent.getStringExtra("petName");
+        dogName = intent.getStringExtra("dogName");
         typeQuestionTextView.setText("What type of Dog is "+dogName.toString()+" ? ");
-        String uriString = intent.getStringExtra("petPhoto");
+        String uriString = intent.getStringExtra("dogPhoto");
         final Uri dogPhoto = Uri.parse(uriString);
 
         PetPhotoView.setImageURI(dogPhoto); //Set previous selected photo- to this page
@@ -61,12 +60,9 @@ public class SelectBreedActivity extends AppCompatActivity {
         breedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent selectBreedIntent=new Intent(getApplicationContext(),BreedListActivity.class);
-                selectBreedIntent.putExtra("dogName",dogName);
-                selectBreedIntent.setData(dogPhoto);
-                startActivity(selectBreedIntent);*/
 
-                startActivity(new Intent(SelectBreedActivity.this,BreedListActivity.class));
+                startActivityForResult(new Intent(SelectBreedActivity.this,BreedListActivity.class),998);
+
             }
         });
 
@@ -83,6 +79,22 @@ public class SelectBreedActivity extends AppCompatActivity {
         );
 
 
+
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data)
+    {
+        super.onActivityResult(requestCode,resultCode,data);
+
+        String dogBreed;
+        if(resultCode==RESULT_OK &&requestCode==998)
+        {
+            dogBreed=data.getStringExtra("dogBreed");
+            breedButton.setText(dogBreed);
+        }
 
     }
 

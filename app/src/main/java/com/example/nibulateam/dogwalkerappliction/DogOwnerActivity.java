@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nibulateam.dogwalkerappliction.Model.Input;
 import com.example.nibulateam.dogwalkerappliction.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,7 +36,7 @@ public class DogOwnerActivity extends AppCompatActivity{
     private Button rotateButton;
 
 
-    private String petName;
+    private String dogName;
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
@@ -84,21 +85,28 @@ public class DogOwnerActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                petName=petNamePlain.getText().toString();
+                Uri pathToImage= Uri.parse("android.resource://com.example.nibulateam.dogwalkerappliction/" + R.drawable.sittingdog);
+                String imagePath = pathToImage.toString();
 
+                dogName=petNamePlain.getText().toString();
+                if(Input.isValidName(dogName)) {
+                    Intent selectPhotoName_Intent = new Intent(getApplicationContext(), SelectBreedActivity.class);
+                    selectPhotoName_Intent.putExtra("dogName", dogName);
+                    if (tempImage != null) {
+                        selectPhotoName_Intent.putExtra("dogPhoto", tempImage.toString());
+                    } else {
+                        //addPetPhotoView.setImageURI(pathToImage);
+                        addPetPhotoView.setTag(pathToImage.toString());
+                        selectPhotoName_Intent.putExtra("dogPhoto", "EmptyValue");
 
+                    }
 
-                Intent selectPhotoName_Intent=new Intent(getApplicationContext(), SelectBreedActivity.class);
-                selectPhotoName_Intent.putExtra("petName",petName);
-                if(tempImage!=null){
-                    selectPhotoName_Intent.putExtra("petPhoto", tempImage.toString());
+                    startActivity(selectPhotoName_Intent);
                 }
-                else {
-                    selectPhotoName_Intent.putExtra("petPhoto", "EmptyValue");
-
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Dog Name must be set",Toast.LENGTH_LONG);
                 }
-
-                startActivity(selectPhotoName_Intent);
 
                 /*move to next page - to select breed of a dog*/
             }

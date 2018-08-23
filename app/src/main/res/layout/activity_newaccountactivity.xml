@@ -142,12 +142,11 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
-        android:layout_height="102dp"
+        android:layout_height="106dp"
         android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:padding="0dp"
         android:scaleType="fitXY"
-        android:src="@drawable/image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

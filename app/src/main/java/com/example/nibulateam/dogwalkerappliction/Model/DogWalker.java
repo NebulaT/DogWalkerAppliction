@@ -1,6 +1,7 @@
 package com.example.nibulateam.dogwalkerappliction.Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class DogWalker  implements Serializable {
 
@@ -9,21 +10,21 @@ private  float price;
 private String aboutMe;
 private String experience;
 private String typeOfDogs;
-private String[][]avaliability;
+private ArrayList<Integer> avaliability;
 
-    public String[][] getAvaliability() {
-        return avaliability;
-    }
-
-    public void setAvaliability(String[][] avaliability) {
-        this.avaliability = avaliability;
-    }
 
     public   DogWalker()
     {
 
     }
 
+    public ArrayList<Integer> getAvaliability() {
+        return avaliability;
+    }
+
+    public void setAvaliability(ArrayList<Integer> avaliability) {
+        this.avaliability = avaliability;
+    }
 
     public String getTypeOfDogs() {
         return typeOfDogs;

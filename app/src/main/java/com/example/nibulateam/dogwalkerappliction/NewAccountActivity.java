@@ -121,6 +121,7 @@ public class NewAccountActivity extends AppCompatActivity {
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            progressDialog.show();
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG_New_User, "createUserWithEmail:success");
@@ -218,7 +219,7 @@ public class NewAccountActivity extends AppCompatActivity {
         }
       else  if(!Input.isValidName(PasswordET.getText().toString()))
         {
-            Toast.makeText(NewAccountActivity.this, "Password-Error must be 4 letters and numbers",
+            Toast.makeText(NewAccountActivity.this, "Password-Error should be at least 6 characters",
                     Toast.LENGTH_SHORT).show();
             return false;
         }

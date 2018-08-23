@@ -154,20 +154,22 @@
 
 
                 />
-            <ImageButton
+
+            <CheckBox
                 android:id="@+id/ava00"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@color/black"
-                android:background="@color/white"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="2dp"
-                android:gravity="center"
                 android:layout_weight="1"
-
-
-                />
-            <ImageButton
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:cropToPadding="true"
+                android:scaleType="fitCenter"
+                android:padding="2dp"
+                android:gravity="center"
+                android:textColor="@color/black" />
+            <CheckBox
                 android:id="@+id/ava01"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -178,9 +180,8 @@
                 android:gravity="center"
                 android:layout_weight="1"
 
-
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava02"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -193,7 +194,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava03"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -206,7 +207,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava04"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -219,7 +220,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava05"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -232,7 +233,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava06"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -265,7 +266,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava10"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -278,7 +279,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava11"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -291,7 +292,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava12"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -304,7 +305,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava13"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -317,7 +318,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava14"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -330,7 +331,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava15"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -343,7 +344,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava16"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -375,7 +376,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava20"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -388,7 +389,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava21"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -401,7 +402,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava22"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -414,7 +415,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava23"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -427,7 +428,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava24"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -440,7 +441,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava25"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -453,7 +454,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava26"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -485,7 +486,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava30"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -498,7 +499,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava31"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -511,7 +512,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava32"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -524,7 +525,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava33"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -537,7 +538,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava34"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -550,7 +551,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava35"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -563,7 +564,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava36"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -595,7 +596,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava40"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -608,7 +609,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava41"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -621,7 +622,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava42"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -634,7 +635,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava43"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -647,7 +648,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava44"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -660,7 +661,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava45"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -673,7 +674,7 @@
 
 
                 />
-            <ImageButton
+            <CheckBox
                 android:id="@+id/ava46"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

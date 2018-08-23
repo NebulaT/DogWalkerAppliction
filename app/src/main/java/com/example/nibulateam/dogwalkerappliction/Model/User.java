@@ -1,5 +1,7 @@
 package com.example.nibulateam.dogwalkerappliction.Model;
 
+import android.net.Uri;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,6 +19,7 @@ public class User implements Serializable {
     private boolean isDogWalker;
     private  boolean isDogOwner;
     private String phoneNumber;
+    private Uri userImage;
 
     public String getGender() {
         return gender;
@@ -26,9 +29,8 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
-    //pic//
     public DogWalker dogWalker;
-    protected DogOwner dogOwner;
+    public DogOwner dogOwner;
 
 
     public String getFirstName() {

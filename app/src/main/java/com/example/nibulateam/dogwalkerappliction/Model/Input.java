@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public abstract class Input {
 
-
+private static final int pass_lan=6;
 
     public static boolean isValidEmail(String Email)
     {
@@ -41,7 +41,10 @@ public abstract class Input {
 
         Pattern pattern;
         Matcher matcher;
-
+    if(password.length()<pass_lan)
+    {
+        return false;
+    }
         final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
 
         pattern = Pattern.compile(PASSWORD_PATTERN);

@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,18 +14,21 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nibulateam.dogwalkerappliction.Model.DogWalker;
 import com.example.nibulateam.dogwalkerappliction.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
@@ -45,6 +49,9 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
     private TextView UserNameTV,BirthdayTV;
     private TextView PriceTV;
     private int year,month,day;
+
+
+
     private User user;
     private int price;
 
@@ -56,6 +63,10 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
     private String dogSize;
     private String Exp=null;
     private String AboutMe=null;
+    private ArrayList<Integer>avaCalander;
+
+    private Uri userImage;
+    private ImageView userImageView;
 
 
 
@@ -73,6 +84,7 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
         user=(User)intent.getSerializableExtra("user");
 
 
+        avaCalander=new ArrayList<Integer>();
 
         isInputBirthDay=false;
 
@@ -88,6 +100,7 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
         UserNameTV=(TextView)findViewById(R.id.userNameTextView) ;
         BirthdayTV=(TextView)findViewById(R.id.birthdayTextView);
         AvaButton=(Button)findViewById(R.id.Avabutton);
+        userImageView=(ImageView)findViewById(R.id.userPicIV);
 
         PriceTV.setText("0$");
 
@@ -202,6 +215,11 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
                     user.dogWalker.setExperience(Exp);
                     user.setGender(GetGender());
                     user.dogWalker.setTypeOfDogs(dogSize);
+
+                    if(!avaCalander.isEmpty())
+                    {
+                        user.dogWalker.setAvaliability(avaCalander);
+                    }
 
 
                     Intent dogWalkerCreationIntent=new Intent(getApplicationContext(),DogWalker_Register_Page02_Activity.class);
@@ -318,12 +336,6 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
     }
 
 
@@ -342,6 +354,34 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
 
     private void Showavailability()
     {
-startActivity(new Intent(DogWalker_Register_Page01_Activity.this,Avaliability_Dogwalker_Activity.class));
+        Bundle extra = new Bundle();
+        extra.putSerializable("avaCalander", avaCalander);
+
+        Intent intent=new Intent(getApplicationContext(),Avaliability_Dogwalker_Activity.class);
+        intent.putExtra("extra", extra);
+
+        //Intent intent =new Intent(getApplicationContext(),Avaliability_Dogwalker_Activity.class);
+        //intent.putExtra("avaCalander",avaCalander);
+
+        startActivityForResult(intent,999);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode==RESULT_OK && requestCode==999) {
+            try {
+
+                Bundle value = data.getBundleExtra("extra");
+                avaCalander = (ArrayList<Integer>) value.getSerializable("saveCalander");
+
+                Toast.makeText(DogWalker_Register_Page01_Activity.this, "the value return " + avaCalander.get(0), Toast.LENGTH_SHORT).show();
+            } catch (NullPointerException exp) {
+                Log.e("Exp", "value-null");
+            }
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.nibulateam.dogwalkerappliction;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -14,6 +15,7 @@ import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -84,13 +86,15 @@ public class BreedListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breedlist);
 
+
         DisplayMetrics popUpList=new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(popUpList);
 
         int width=popUpList.widthPixels;
         int height=popUpList.heightPixels;
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.9));
+        getWindow().setLayout((int)(width),(int)(height));
+        CloseKeyboard();
 
 
 
@@ -104,11 +108,10 @@ public class BreedListActivity extends Activity {
 
         final ListView listView = (ListView)findViewById(R.id.listView);
         final CustomAdapter customAdapter=new CustomAdapter();
+        listView.setTextFilterEnabled(true);
         listView.setAdapter(customAdapter);
+
         Intent intent=getIntent();
-        user= (User) intent.getSerializableExtra("user");
-        dogName=intent.getStringExtra("dogName");
-        dogPhoto=intent.getData();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -137,13 +140,12 @@ public class BreedListActivity extends Activity {
             public void onClick(View view) {
 
                 Intent selectedBreedIntent=new Intent(getApplicationContext(),SelectBreedActivity.class);
-                selectedBreedIntent.putExtra("user",user);
-                selectedBreedIntent.putExtra("dogName",dogName);
-                selectedBreedIntent.putExtra("Breed",dogBreedNames[position]); //BACK TO PREVIOUS PAGE WITH  SELECTED BREED//
-
-                startActivity(selectedBreedIntent);
+                selectedBreedIntent.putExtra("dogBreed",dogBreedNames[position]); //BACK TO PREVIOUS PAGE WITH  SELECTED BREED//
+                setResult(RESULT_OK,selectedBreedIntent);
+                finish();
             }
         });
+
 
         searchBarTextView.addTextChangedListener(new TextWatcher() {
 
@@ -151,6 +153,7 @@ public class BreedListActivity extends Activity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                 BreedListActivity.this.customAdapter.getFilter().filter(charSequence);
+                customAdapter.notifyDataSetChanged();
             }
             @Override
             public void afterTextChanged(Editable editable) {
@@ -165,17 +168,15 @@ public class BreedListActivity extends Activity {
 
     }
 
+    private void CloseKeyboard() {
 
-
-
-
-
-
-
-
-
-
-
+        View view=this.getCurrentFocus();
+        if(view!=null)
+        {
+            InputMethodManager imm=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
+    }
 
 
     class CustomAdapter extends BaseAdapter implements Filterable {

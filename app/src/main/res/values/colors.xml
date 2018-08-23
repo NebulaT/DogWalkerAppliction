@@ -160,4 +160,6 @@
     <color name="Navy">#000080</color>
     <color name="Black">#d6000000</color>
 
+    <color name="Color1">#01dc9f</color>
+    <color name="Color2">#00abf2</color>
 </resources>

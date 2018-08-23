@@ -1,13 +1,17 @@
 package com.example.nibulateam.dogwalkerappliction;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,6 +27,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nibulateam.dogwalkerappliction.Model.PetPackage.Pet_Package.Pet;
+import com.example.nibulateam.dogwalkerappliction.Model.User;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -30,8 +37,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class BreedListActivity extends AppCompatActivity {
+public class BreedListActivity extends Activity {
 
+
+    private User user;
+    private String dogName;
+    private Uri dogPhoto;
 
     //UI//
     private CustomAdapter customAdapter;
@@ -46,7 +57,7 @@ public class BreedListActivity extends AppCompatActivity {
 
     int[] dogBreedImage = new int[]{R.drawable.dog_two};
 
-    String[] dogBreedNames = {"Affenpinscher","Afghan Hound","Airedale Terrier", "Akita Inu","Alaskan Malamute","Am Staff","American Coonhound"," American Eskimo Dog"
+    String[] dogBreedNames = {"Affenpinscher","Afghan Hound","Airedale Terrier", "Akita Inu","Alaskan Malamute","Am Staff","American Coonhound","American Eskimo Dog"
             ,"American Foxhound","American Pitbull Terrier","American Water Spaniel","Anatolian Shepherd", "Australian Cattle","Australian Shepherd","Australian Terrier","Azawakh","Basenji","Basset Hound","Beagle",
             "Bearded Collie","Beauceron","Bedlington Terrier","Belgian Laekenois","Belgian Malinois","Belgian Sheepdog","Belgian Tervuren","Bergamasco","Bernese Mountain Dog,",
             "Bichon Frisé","Biewer Terrier","Black & Tan Coonhound","Black Russian Terrier","Bloodhound","Bluetick Coonhound","Boerboel","Border Collie","Border Terrier","Borzoi","Boston Terrier","Bouvier des Flandres","Boxer","Briard",
@@ -73,19 +84,17 @@ public class BreedListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breedlist);
 
-        final ListView listView = (ListView)findViewById(R.id.listView);
-        final CustomAdapter customAdapter=new CustomAdapter();
-        listView.setAdapter(customAdapter);
+        DisplayMetrics popUpList=new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(popUpList);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                position=i;
+        int width=popUpList.widthPixels;
+        int height=popUpList.heightPixels;
 
-                Toast.makeText(getApplicationContext(),"Selected",Toast.LENGTH_LONG).show();
+        getWindow().setLayout((int)(width*.8),(int)(height*.9));
 
-            }
-        });
+
+
+
         searchBarTextView=(EditText)findViewById(R.id.searchBarTextView);
         topImageView=(ImageView)findViewById(R.id.topImageView);
         bottomImageView=(ImageView)findViewById(R.id.bottomImageView);
@@ -93,12 +102,46 @@ public class BreedListActivity extends AppCompatActivity {
         mixedBreedCheckBox=(CheckBox)findViewById(R.id.mixedBreedCheckBox);
         selectButton=(Button)findViewById(R.id.selectButton);
 
+        final ListView listView = (ListView)findViewById(R.id.listView);
+        final CustomAdapter customAdapter=new CustomAdapter();
+        listView.setAdapter(customAdapter);
+        Intent intent=getIntent();
+        user= (User) intent.getSerializableExtra("user");
+        dogName=intent.getStringExtra("dogName");
+        dogPhoto=intent.getData();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
+                position=i;
+
+                    for(int j=0;j< adapterView.getChildCount();j++)
+                    {
+                        if (position == j) {
+                            listView.getChildAt(j).setBackgroundColor(Color.DKGRAY);
+                            Toast.makeText(getApplicationContext(), dogBreedNames[j], Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            listView.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
+                        }
+                    }
+                Toast.makeText(getApplicationContext(), "Selected", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
 
         selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent selectedBreedIntent=new Intent(getApplicationContext(),SelectBreedActivity.class);
+                selectedBreedIntent.putExtra("user",user);
+                selectedBreedIntent.putExtra("dogName",dogName);
                 selectedBreedIntent.putExtra("Breed",dogBreedNames[position]); //BACK TO PREVIOUS PAGE WITH  SELECTED BREED//
+
+                startActivity(selectedBreedIntent);
             }
         });
 
@@ -136,7 +179,6 @@ public class BreedListActivity extends AppCompatActivity {
 
 
     class CustomAdapter extends BaseAdapter implements Filterable {
-
 
         @Override
         public int getCount() {

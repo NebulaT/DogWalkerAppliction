@@ -39,22 +39,21 @@ public class SelectBreedActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addpet2);
-        Intent intent = getIntent();
-        user = (User) intent.getSerializableExtra("user");
+
 
         PetPhotoView=(ImageView)findViewById(R.id.PetPhotoView);
         addPetView=(ImageView)findViewById(R.id.PetPhotoView);
         typeQuestionTextView=(TextView)findViewById(R.id.typeQuestionTextView);
         addPetTextView=(TextView)findViewById(R.id.addPetTextView);
-        //breedPlain=(EditText)findViewById(R.id.breedPlain);
         nextButton=(Button)findViewById(R.id.nextButton);
         breedButton=(Button)findViewById(R.id.breedButton);
 
-
+        Intent intent = getIntent();
+        user = (User) intent.getSerializableExtra("user");
         dogName = intent.getStringExtra("petName");
         typeQuestionTextView.setText("What type of Dog is "+dogName.toString()+" ? ");
         String uriString = intent.getStringExtra("petPhoto");
-        Uri dogPhoto = Uri.parse(uriString);
+        final Uri dogPhoto = Uri.parse(uriString);
 
         PetPhotoView.setImageURI(dogPhoto); //Set previous selected photo- to this page
 
@@ -62,8 +61,12 @@ public class SelectBreedActivity extends AppCompatActivity {
         breedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent selectBreedIntent=new Intent(getApplicationContext(),BreedListActivity.class);
-                startActivity(selectBreedIntent);
+                /*Intent selectBreedIntent=new Intent(getApplicationContext(),BreedListActivity.class);
+                selectBreedIntent.putExtra("dogName",dogName);
+                selectBreedIntent.setData(dogPhoto);
+                startActivity(selectBreedIntent);*/
+
+                startActivity(new Intent(SelectBreedActivity.this,BreedListActivity.class));
             }
         });
 

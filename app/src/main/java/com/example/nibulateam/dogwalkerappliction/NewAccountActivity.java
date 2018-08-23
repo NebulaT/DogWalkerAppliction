@@ -34,7 +34,7 @@ public class NewAccountActivity extends AppCompatActivity {
     private String userChoiceString;
 
 
-    private static String TAG_New_User="New user";
+    private static String TAG_New_User = "New user";
 
 
     private FirebaseAuth mAuth;
@@ -47,13 +47,12 @@ public class NewAccountActivity extends AppCompatActivity {
     private Button creatButton;
     private EditText EmailET;
     private EditText PasswordET;
-    private  EditText PhoneET;
-    private  EditText NameET;
+    private EditText PhoneET;
+    private EditText NameET;
     private String UserID;
     private boolean isUserCreated;
 
     private User user;
-
 
 
     @Override
@@ -64,44 +63,42 @@ public class NewAccountActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        creatButton=(Button)findViewById(R.id.createButton);
-        EmailET=(EditText) findViewById(R.id.emailPlain) ;
-        NameET=(EditText)findViewById(R.id.namePlain);
-        PasswordET=(EditText)findViewById(R.id.passwordPlain);
-        PhoneET=(EditText)findViewById(R.id.phonePlain);
+        creatButton = (Button) findViewById(R.id.createButton);
+        EmailET = (EditText) findViewById(R.id.emailPlain);
+        NameET = (EditText) findViewById(R.id.namePlain);
+        PasswordET = (EditText) findViewById(R.id.passwordPlain);
+        PhoneET = (EditText) findViewById(R.id.phonePlain);
 
 
-        getUserChoice=getIntent();
-        userChoiceString=getUserChoice.getStringExtra("choice");
+        getUserChoice = getIntent();
+        userChoiceString = getUserChoice.getStringExtra("choice");
 
         creatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean check=checkInput();
-                if(check==true)
-                {
-                    email=EmailET.getText().toString();
-                    password=PasswordET.getText().toString();
-                    phone=PhoneET.getText().toString();
-                    name=NameET.getText().toString();
+                boolean check = checkInput();
+                if (check == true) {
+                    email = EmailET.getText().toString();
+                    password = PasswordET.getText().toString();
+                    phone = PhoneET.getText().toString();
+                    name = NameET.getText().toString();
                     signUpNewUsersWithEmail();
 
                     //Intent intent=new Intent(NewAccountActivity.this,User.class);
                     //intent.putExtra("user",user)
 
-              }
-                 else {
+                } else {
                     Toast.makeText(NewAccountActivity.this, "Authentication failed.",
                             Toast.LENGTH_SHORT).show();
-              }
+                }
 
             }
         });
 
 
-
-
     }
+
+
 
 
     private void signUpNewUsersWithEmail() {

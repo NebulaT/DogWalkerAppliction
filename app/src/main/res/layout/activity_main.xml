@@ -4,34 +4,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/LightGrey"
     tools:context=".MainActivity">
 
 
-    <Button
-        android:id="@+id/createNewAccButton"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/DimGray"
-        android:fontFamily="monospace"
-        android:gravity="center_vertical|center"
-        android:text="Create New Account"
-        android:textAllCaps="false"
-        android:textColor="@color/AliceBlue"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petPhotView" />
+        android:layout_marginTop="396dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/petPhotView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/petPhotView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <Button
+            android:id="@+id/createNewAccButton"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/DimGray"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|center"
+            android:text="Create New Account"
+            android:textAllCaps="false"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@+id/petPhotView" />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebookLoginButton"
+            style="@style/com_facebook_loginview_default_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/com_facebook_blue"
+            android:fontFamily="monospace"
+            android:gravity="center_horizontal|center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="@string/com_facebook_loginview_log_in_button_long"
+            android:textColor="@color/AliceBlue"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createNewAccButton"
+            tools:text="@string/com_facebook_loginview_log_in_button_long" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/googleLoginButton"
+            android:layout_width="354dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginStart="8dp"
+            android:foregroundGravity="center"
+            android:paddingTop="5dp"
+            app:buttonSize="@string/GoogleSignIn"
+            app:colorScheme="light"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/facebookLoginButton">
+
+        </com.google.android.gms.common.SignInButton>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="110dp"
         android:layout_height="61dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -40,31 +105,34 @@
         android:background="@android:color/transparent"
         android:text="Log In"
         android:textColor="#808080"
+        android:textColorHint="@color/LightGrey"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.016" />
 
     <ImageView
         android:id="@+id/petPhotView"
         android:layout_width="0dp"
-        android:layout_height="319dp"
+        android:layout_height="333dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
+        android:scaleType="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
-        app:layout_constraintVertical_bias="0.012"
-        app:srcCompat="@drawable/image" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logomain" />
 
     <TextView
         android:id="@+id/welcomeTextView"
-        android:layout_width="265dp"
-        android:layout_height="116dp"
+        android:layout_width="278dp"
+        android:layout_height="94dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -73,10 +141,11 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Welcome to Nebula"
-        android:textColor="@color/Azure"
+        android:textColor="@color/White"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/petPhotView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/petPhotView"
         app:layout_constraintVertical_bias="0.0" />
@@ -93,52 +162,12 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="here you can find\n Dog walkers and Pet sitting\n in your own area !"
-        android:textColor="@color/Azure"
+        android:textColor="@color/White"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/petPhotView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeTextView"
-        app:layout_constraintVertical_bias="0.952" />
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/facebookLoginButton"
-        style="@style/com_facebook_loginview_default_style"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/com_facebook_blue"
-        android:fontFamily="monospace"
-        android:gravity="center_horizontal|center"
-        android:text="@string/com_facebook_loginview_log_in_button_long"
-        android:textColor="@color/AliceBlue"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createNewAccButton"
-        tools:text="@string/com_facebook_loginview_log_in_button_long" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleLoginButton"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/facebookLoginButton">
-
-    </com.google.android.gms.common.SignInButton>
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>

@@ -17,6 +17,7 @@ public class UserChoiceDogOrOwnerActivity extends AppCompatActivity{
     Button dogWalkerButton;
 
     private User user;
+    private boolean flag;
 
     private Intent intent;
     @Override
@@ -25,8 +26,14 @@ public class UserChoiceDogOrOwnerActivity extends AppCompatActivity{
         setContentView(R.layout.activity_userchoicewalkerorowner);
 
         intent=getIntent();
-        user=(User)intent.getSerializableExtra("user");
+        flag=(boolean)intent.getBooleanExtra("flag",false);
 
+
+        if(flag==true) {
+            user = (User) intent.getSerializableExtra("user");
+        }
+        else
+            user=null;
 
 
 
@@ -36,12 +43,12 @@ public class UserChoiceDogOrOwnerActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                if(user!=null) {
+                if(user==null) {
                     Intent dogOwnerIntent = new Intent(getApplicationContext(), NewAccountActivity.class);
                     dogOwnerIntent.putExtra("choice", "DogOwner");
-
                     startActivity(dogOwnerIntent);
                 }
+
             }
         });
 
@@ -52,9 +59,16 @@ public class UserChoiceDogOrOwnerActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                if(user!=null) {
+                if(user==null) {
                     Intent dogWalkerIntenet = new Intent(getApplicationContext(), NewAccountActivity.class);
                     dogWalkerIntenet.putExtra("choice", "DogWalker");
+
+                    startActivity(dogWalkerIntenet);
+                }
+                else
+                {
+                    Intent dogWalkerIntenet = new Intent(getApplicationContext(), DogWalker_Register_Page01_Activity.class);
+                    dogWalkerIntenet.putExtra("user",user);
 
                     startActivity(dogWalkerIntenet);
                 }
@@ -64,7 +78,6 @@ public class UserChoiceDogOrOwnerActivity extends AppCompatActivity{
 
 
 
-        //User user=(User)getIntent().getSerializableExtra("user");
 
 
     }

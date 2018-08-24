@@ -1,6 +1,8 @@
 package com.example.nibulateam.dogwalkerappliction;
 
 import android.content.Intent;
+import android.graphics.Picture;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -37,11 +39,13 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isLoginFacebook,isLoginGoogle;
 
 
+
     //ui//
 
     private Button createNewAccButton;
@@ -63,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private LoginButton facebookLoginButton;
     private CallbackManager mCallbackManager;
     private final static String facebook_TAG = "facebook-Login";
+
 
     //google//
     private final static String google_TAG = "google-Login";
@@ -86,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent acc = new Intent(getApplicationContext(), UserChoiceDogOrOwnerActivity.class);
-                acc.putExtra("user",new User());
+                acc.putExtra("flag",false);
                 startActivity(acc);
             }
         });
@@ -120,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUI_ToMain(FirebaseUser currentUser) {
 
-        User user=new User();
+
 
 
     }
@@ -160,18 +166,25 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(facebook_TAG, "handleFacebookAccessToken:" + token);
 
+
+
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
 
         mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if (task.isSuccessful()) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(facebook_TAG, "signInWithCredential:success");
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    updateUI(user,"facebook");
-                } else {
+
+
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user,"facebook");
+
+                    }
+                     else {
                     // If sign in fails, display a message to the user.
                     Log.w(facebook_TAG, "signInWithCredential:failure", task.getException());
                     Toast.makeText(MainActivity.this, "Authentication failed.",
@@ -183,33 +196,46 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void updateUI(FirebaseUser user,final  String  TAG) {
+    private   void updateUI(FirebaseUser user,final  String  TAG) {
+        User tuser;
         if (user != null) {
             currentUser = user;
             String userId = user.getUid();
-            User tuser = new User(userId, user.getDisplayName(), user.getEmail(), TAG+"Password", user.getPhoneNumber());
-            addUserDataTo_DataBase(tuser);
+
+            if(TAG=="facebook") {
+
+                 tuser = new User(userId, user.getDisplayName(), user.getEmail(), TAG + "Password", user.getPhoneNumber());
+                 tuser.setUserUrlImage( getUserPhotoFacebook());
+            }
+            else {
+                tuser = new User(userId, user.getDisplayName(), user.getEmail(), TAG + "Password", user.getPhoneNumber());
+            }
+            //add user to database//
+
+            addUserDataTo_DataBase(tuser,TAG);
 
             Log.d(TAG, "NewUserWith"+TAG+":success");
+
             Toast.makeText(MainActivity.this, "New user with"+TAG, Toast.LENGTH_SHORT).show();
 
 
-
+            //sign out//
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(MainActivity.this, " user signout", Toast.LENGTH_SHORT).show();
 
-
+           //next page//
             Intent acc = new Intent(getApplicationContext(), UserChoiceDogOrOwnerActivity.class);
             acc.putExtra("user",tuser);
+            acc.putExtra("flag",true);
             startActivity(acc);
-            //next page!//
+
         } else {
             Log.d(facebook_TAG, "ExisitUserWith:"+TAG+"failed");
         }
 
     }
 
-    private void addUserDataTo_DataBase(User user) {
+    private  void addUserDataTo_DataBase(User user,String TAG) {
 
 
         if (user != null) {
@@ -223,13 +249,17 @@ public class MainActivity extends AppCompatActivity {
 
             mDatabase.child("Users").child(user.getUserId()).child("Email").setValue(user.getEmail());
 
-            Log.d(facebook_TAG, "Add user to dataBase:success");
+            if(TAG=="facebook") {
+                mDatabase.child("Users").child(user.getUserId()).child("userUrlPhoto").setValue(user.getUserUrlImage());
+            }
+
+            Log.d(TAG, "Add user to dataBase:success");
 
 
         }
 
         else {
-            Log.d(facebook_TAG, "Add user to dataBase:fail");
+            Log.d(TAG, "Add user to dataBase:fail");
         }
 
 
@@ -346,5 +376,25 @@ public class MainActivity extends AppCompatActivity {
             user.setFirstName(ds.child(currentUser.getUid()).getValue(User.class).getFirstName());
 
         }
+    }
+
+
+    private  String getUserPhotoFacebook()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String facebookUserId="";
+
+        for(UserInfo profile : user.getProviderData()) {
+            // check if the provider id matches "facebook.com"
+            if(FacebookAuthProvider.PROVIDER_ID.equals(profile.getProviderId())) {
+                facebookUserId = profile.getUid();
+            }
+        }
+
+        String photoUrl="https://graph.facebook.com/" + facebookUserId + "/picture?height=500";
+
+       return photoUrl;
+
+        //Picasso.with(this).load(photoUrl).into(profilePicture);
     }
 }

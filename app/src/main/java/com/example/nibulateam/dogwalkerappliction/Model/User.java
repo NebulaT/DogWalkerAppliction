@@ -11,7 +11,6 @@ public class User implements Serializable {
 
     private  String userID;
     private String userName;
-    private String lastName;
     private String password;
     private String email;
     private String age;
@@ -19,7 +18,42 @@ public class User implements Serializable {
     private boolean isDogWalker;
     private  boolean isDogOwner;
     private String phoneNumber;
-    private Uri userImage;
+
+    public DogWalker dogWalker;
+    public DogOwner dogOwner;
+
+    //pic//
+    private Uri userImage=null;
+    private String userUrlImage=null;
+
+    public User(String UserID, String Name, String Email, String Password, String Phone)
+    {
+        userID=UserID;
+        email=Email;
+        password=Password;
+        userName=Name;
+        phoneNumber=Phone;
+
+    }
+    //defult co//
+    public User()
+    {
+
+    }
+    public User(String UserID,String Email,String Password,String FirstName,String Age,boolean isDogOwner,boolean isDogWalker)
+    {
+        userID=UserID;
+        email=Email;
+        password=Password;
+        userName=FirstName;
+        age=Age;
+        this.isDogOwner=isDogOwner;
+        this.isDogWalker=isDogWalker;
+    }
+
+    public void setUserImage(Uri userImage) {
+        this.userImage = userImage;
+    }
 
     public String getGender() {
         return gender;
@@ -29,9 +63,18 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
-    public DogWalker dogWalker;
-    public DogOwner dogOwner;
 
+    public String getUserImage() {
+        return userUrlImage;
+    }
+
+    public String getUserUrlImage() {
+        return userUrlImage;
+    }
+
+    public void setUserUrlImage(String userUrlImage) {
+        this.userUrlImage = userUrlImage;
+    }
 
     public String getFirstName() {
         return userName;
@@ -41,13 +84,6 @@ public class User implements Serializable {
         this.userName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public String getPassword() {
         return password;
@@ -120,29 +156,6 @@ public class User implements Serializable {
         this.userID = userID;
     }
 
-    public User(String UserID, String Name, String Email, String Password, String Phone)
-    {
-        userID=UserID;
-        email=Email;
-        password=Password;
-        userName=Name;
-        phoneNumber=Phone;
-    }
-    public User()
-    {
-
-    }
-    public User(String UserID,String Email,String Password,String FirstName,String LastName,String Age,boolean isDogOwner,boolean isDogWalker)
-    {
-        userID=UserID;
-        email=Email;
-        password=Password;
-        userName=FirstName;
-        lastName=LastName;
-        age=Age;
-        this.isDogOwner=isDogOwner;
-        this.isDogWalker=isDogWalker;
-    }
 
 
 
@@ -160,7 +173,6 @@ public Map<String,Object> toMap()
 
     result.put("User Id",userID);
     result.put("userName",userName);
-    result.put("LastName",lastName);
     result.put("Email",email);
     result.put("Age",age.toString());
     result.put("isDogOwner",isDogOwner);

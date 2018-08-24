@@ -53,13 +53,12 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
 
 
     private User user;
-    private int price;
+    private float price=0;
 
 
     private RadioGroup radioGroupFM;
     private RadioButton MaleRB,FemaleRB;
 
-    private Boolean isMale,isFemale;
     private String dogSize;
     private String Exp=null;
     private String AboutMe=null;
@@ -70,7 +69,8 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
 
 
 
-    private boolean isInputGender,isInputBirthDay,isInputDogSize;
+    private boolean isInputGender=false,isInputBirthDay,isInputDogSize;
+    private boolean isFemale=false,isMale=false;
 
 
 
@@ -133,6 +133,7 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
                 if(FemaleRB.isChecked())
                 {
                     FemaleRB.setChecked(false);
+                    isInputGender=true;
                     isMale=true;
                     isFemale=false;
                 }
@@ -147,8 +148,9 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
                 if(FemaleRB.isChecked())
                 {
                     MaleRB.setChecked(false);
-                    isFemale=true;
+                    isInputGender=true;
                     isMale=false;
+                    isFemale=true;
                 }
             }
         });
@@ -210,6 +212,7 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
                 if( isInputBirthDay==true && isInputDogSize==true && isInputGender==true)
                 {
                     user.setAge(BirthdayTV.getText().toString());
+                    user.setDogWalker();
                     user.dogWalker.setPrice(price);
                     user.dogWalker.setAboutMe(AboutMe);
                     user.dogWalker.setExperience(Exp);
@@ -241,7 +244,7 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
                 prograss=i;
                 PriceTV.setText(prograss+" $");
 
-                price=prograss;
+                price=(float)i;
 
 
 
@@ -309,14 +312,9 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
     private void checkInput()
     {
 
-        if(isMale==true || isFemale==true)
-        {
-            isInputGender=true;
-        }
-        else
+        if(isInputGender==false)
         {
             Toast.makeText(DogWalker_Register_Page01_Activity.this,"Please choose gender",Toast.LENGTH_SHORT).show();
-            isInputGender=false;
         }
         if(SmallD.isChecked() || LargeD.isChecked() || MediumD.isChecked())
         {

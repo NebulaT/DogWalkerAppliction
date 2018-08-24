@@ -99,9 +99,6 @@ public class DogWalker_Register_Page02_Activity extends AppCompatActivity {
 
     mDatabase = FirebaseDatabase.getInstance().getReference();
 
-    //mDatabase.child("Users").child(user.getUserId()).child("UserName").setValue(user.getFirstName());
-   // mDatabase.child("Users").child(user.getUserId()).child("Phone").setValue(user.getPhoneNumber());
-   // mDatabase.child("Users").child(user.getUserId()).child("Email").setValue(user.getEmail());
     mDatabase.child("Users").child(user.getUserId()).child("isDogWalker").setValue(user.isDogWalker());
     mDatabase.child("Users").child(user.getUserId()).child("Gender").setValue(user.getGender());
     mDatabase.child("Users").child(user.getUserId()).child("Age").setValue(user.getAge());

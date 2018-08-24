@@ -56,12 +56,12 @@ public class DataBase {
             user.setEmail(ds.child(currentUser.getUid()).getValue(User.class).getEmail());
             user.setPhoneNumber(ds.child(currentUser.getUid()).getValue(User.class).getPhoneNumber());
             user.setGender(ds.child(currentUser.getUid()).getValue(User.class).getGender());
+            user.setAge(ds.child(currentUser.getUid()).getValue(User.class).getAge());
             user.setDogWalker();
             user.dogWalker.setAboutMe(ds.child(currentUser.getUid()).child("DogWalker").getValue(User.class).dogWalker.getAboutMe());
             user.dogWalker.setExperience(ds.child(currentUser.getUid()).child("DogWalker").getValue(User.class).dogWalker.getExperience());
             user.dogWalker.setPrice(ds.child(currentUser.getUid()).child("DogWalker").getValue(User.class).dogWalker.getPrice());
-
-
+            user.dogWalker.setAvaliability(ds.child(currentUser.getUid()).child("DogWalker").getValue(User.class).dogWalker.getAvaliability());
         }
 
 return user;

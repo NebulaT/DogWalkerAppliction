@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent acc = new Intent(getApplicationContext(), UserChoiceDogOrOwnerActivity.class);
+                acc.putExtra("user",new User());
                 startActivity(acc);
             }
         });
@@ -187,12 +188,20 @@ public class MainActivity extends AppCompatActivity {
             currentUser = user;
             String userId = user.getUid();
             User tuser = new User(userId, user.getDisplayName(), user.getEmail(), TAG+"Password", user.getPhoneNumber());
-           // addUserDataTo_DataBase(tuser);
+            addUserDataTo_DataBase(tuser);
+
             Log.d(TAG, "NewUserWith"+TAG+":success");
             Toast.makeText(MainActivity.this, "New user with"+TAG, Toast.LENGTH_SHORT).show();
+
+
+
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(MainActivity.this, " user signout", Toast.LENGTH_SHORT).show();
 
+
+            Intent acc = new Intent(getApplicationContext(), UserChoiceDogOrOwnerActivity.class);
+            acc.putExtra("user",tuser);
+            startActivity(acc);
             //next page!//
         } else {
             Log.d(facebook_TAG, "ExisitUserWith:"+TAG+"failed");
@@ -201,6 +210,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addUserDataTo_DataBase(User user) {
+
+
         if (user != null) {
 
 
@@ -215,7 +226,9 @@ public class MainActivity extends AppCompatActivity {
             Log.d(facebook_TAG, "Add user to dataBase:success");
 
 
-        } else {
+        }
+
+        else {
             Log.d(facebook_TAG, "Add user to dataBase:fail");
         }
 

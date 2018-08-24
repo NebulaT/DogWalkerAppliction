@@ -151,7 +151,7 @@ public class NewAccountActivity extends AppCompatActivity {
             userId=user.getUid();
 
             this.user=new User(userId,name,email,password,phone);
-           // addUserDataTo_DataBase(this.user);
+            addUserDataTo_DataBase(this.user);
             Log.d(TAG_New_User, "NewUserWithEmail:success");
 
 
@@ -180,6 +180,10 @@ public class NewAccountActivity extends AppCompatActivity {
 
     private void addUserDataTo_DataBase(User user)
     {
+        progressDialog=new ProgressDialog(this);
+
+        progressDialog.setMessage("");
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         mDatabase.child("Users").child(user.getUserId()).child("UserName").setValue(user.getFirstName());
@@ -188,6 +192,7 @@ public class NewAccountActivity extends AppCompatActivity {
 
         mDatabase.child("Users").child(user.getUserId()).child("Email").setValue(user.getEmail());
 
+        progressDialog.dismiss();
         Log.d(TAG_New_User, "Add user to dataBase:success");
 
 

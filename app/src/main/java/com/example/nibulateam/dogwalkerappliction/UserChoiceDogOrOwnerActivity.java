@@ -15,22 +15,36 @@ public class UserChoiceDogOrOwnerActivity extends AppCompatActivity{
 
     Button dogOwnerButton;
     Button dogWalkerButton;
+
+    private User user;
+
+    private Intent intent;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userchoicewalkerorowner);
+
+        intent=getIntent();
+        user=(User)intent.getSerializableExtra("user");
+
+
+
+
 
         dogOwnerButton=(Button)findViewById(R.id.dogOwnerButton);
         dogOwnerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent dogOwnerIntent=new Intent(getApplicationContext(),NewAccountActivity.class);
-                dogOwnerIntent.putExtra("choice","DogOwner");
+                if(user!=null) {
+                    Intent dogOwnerIntent = new Intent(getApplicationContext(), NewAccountActivity.class);
+                    dogOwnerIntent.putExtra("choice", "DogOwner");
 
-                startActivity(dogOwnerIntent);
+                    startActivity(dogOwnerIntent);
+                }
             }
         });
+
 
         dogWalkerButton=(Button)findViewById(R.id.dogWalkerButton);
         dogWalkerButton.setOnClickListener(new View.OnClickListener()  {
@@ -38,10 +52,12 @@ public class UserChoiceDogOrOwnerActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                Intent dogWalkerIntenet=new Intent(getApplicationContext(),NewAccountActivity.class);
-                dogWalkerIntenet.putExtra("choice","DogWalker");
+                if(user!=null) {
+                    Intent dogWalkerIntenet = new Intent(getApplicationContext(), NewAccountActivity.class);
+                    dogWalkerIntenet.putExtra("choice", "DogWalker");
 
-                startActivity(dogWalkerIntenet);
+                    startActivity(dogWalkerIntenet);
+                }
             }
         });
 

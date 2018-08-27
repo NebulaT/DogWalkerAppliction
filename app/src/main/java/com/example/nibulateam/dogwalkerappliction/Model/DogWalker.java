@@ -11,11 +11,12 @@ private String aboutMe;
 private String experience;
 private String typeOfDogs;
 private ArrayList<Integer> avaliability;
+private ArrayList<User>dogOwners;
 
 
     public   DogWalker()
     {
-
+    dogOwners=new ArrayList<User>();
     }
 
     public ArrayList<Integer> getAvaliability() {
@@ -73,5 +74,29 @@ private ArrayList<Integer> avaliability;
 
     public void setExperience(String experience) {
         this.experience = experience;
+    }
+
+    public ArrayList<User> getDogOwners() {
+        return dogOwners;
+    }
+
+    public void setDogOwners(ArrayList<User> dogOwners) {
+        this.dogOwners = dogOwners;
+    }
+    public void setDogOwner(User DogOwner)
+    {
+        if(!dogOwners.contains(DogOwner))
+        {
+            if(DogOwner.isDogOwner()) {
+                dogOwners.add(DogOwner);
+            }
+        }
+    }
+    public void removeDogOwner(User DogOwner)
+    {
+        if(dogOwners.contains(DogOwner))
+        {
+            dogOwners.remove(DogOwner);
+        }
     }
 }

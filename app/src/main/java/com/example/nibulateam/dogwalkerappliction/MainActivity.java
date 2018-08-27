@@ -391,8 +391,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        String photoUrl="https://graph.facebook.com/" + facebookUserId + "/picture?height=500";
-
+        //String photoUrl="https://graph.facebook.com/" + facebookUserId + "/picture?type=large";
+        String photoUrl=user.getPhotoUrl().toString();
        return photoUrl;
 
         //Picasso.with(this).load(photoUrl).into(profilePicture);

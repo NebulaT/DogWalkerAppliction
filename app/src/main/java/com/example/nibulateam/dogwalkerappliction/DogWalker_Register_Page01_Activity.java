@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -22,12 +23,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nibulateam.dogwalkerappliction.Model.DogWalker;
+import com.example.nibulateam.dogwalkerappliction.Model.Input;
 import com.example.nibulateam.dogwalkerappliction.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -66,6 +71,7 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
 
     private Uri userImage;
     private ImageView userImageView;
+    private static final int PICK_IMAGE=100;
 
 
 
@@ -84,9 +90,11 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
         user=(User)intent.getSerializableExtra("user");
 
 
+
         avaCalander=new ArrayList<Integer>();
 
         isInputBirthDay=false;
+
 
          SelectDateButton=(Button)findViewById(R.id.SelectDatebutton);
         SmallD=(CheckBox)findViewById(R.id.SmallCheckBox);
@@ -102,9 +110,20 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
         AvaButton=(Button)findViewById(R.id.Avabutton);
         userImageView=(ImageView)findViewById(R.id.userPicIV);
 
+
         PriceTV.setText("0$");
 
         UserNameTV.setText("Hello "+user.getFirstName());
+
+        //try to load user image from facebook //
+        Runnable runnable=new Runnable() {
+            @Override
+            public void run() {
+                loaduserPic();
+            }
+        };
+        runnable.run();
+
 
         SelectDateButton.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -113,6 +132,7 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
             ChooseBirthday();
         }
     });
+
     mDateSetListener=new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
@@ -133,10 +153,10 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
                 if(FemaleRB.isChecked())
                 {
                     FemaleRB.setChecked(false);
-                    isInputGender=true;
-                    isMale=true;
                     isFemale=false;
                 }
+                isInputGender=true;
+                isMale=true;
             }
         });
 
@@ -145,13 +165,14 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
         FemaleRB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(FemaleRB.isChecked())
+                if(MaleRB.isChecked())
                 {
                     MaleRB.setChecked(false);
-                    isInputGender=true;
                     isMale=false;
-                    isFemale=true;
+
                 }
+                isInputGender=true;
+                isFemale=true;
             }
         });
 
@@ -269,6 +290,15 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
             }
         });
 
+        userImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 openGallery();
+            }
+        });
+
+
+
 
     }
 
@@ -365,6 +395,24 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
 
     }
 
+    private synchronized void loaduserPic()
+    {
+        if(user.getUserUrlImage()!=null)
+        {
+            try {
+                Picasso.with(getApplicationContext()).load(user.getUserUrlImage()).fit().centerCrop().into(userImageView);
+            }catch (IllegalArgumentException e)
+            {
+                Log.e("User image","Error-IllegalArgumentException- "+e.getMessage());
+            }
+            catch (NullPointerException e2) {
+                Log.e("User image", "Error-NullPointerException- " + e2.getMessage());
+            }
+        }
+
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -380,6 +428,20 @@ public class DogWalker_Register_Page01_Activity extends AppCompatActivity {
                 Log.e("Exp", "value-null");
             }
         }
+        if(resultCode==RESULT_OK && requestCode==PICK_IMAGE)
+        {
+            userImage=data.getData();
+            Picasso.with(getApplicationContext()).load(userImage).fit().centerCrop().into(userImageView);
+            user.setUserImage(userImage);
+           // userImageView.setImageURI(userImage);
+        }
 
     }
+    private void openGallery()
+    {
+        Intent gallery=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery,PICK_IMAGE);
+
+    }
+
 }

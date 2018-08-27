@@ -23,13 +23,61 @@ import java.util.ArrayList;
 public class DogOwner implements Serializable {
 
     private ArrayList<Pet> pets;
+    private ArrayList<User> dogWalkers;
 
-    public DogOwner()
-    {
-
+    public DogOwner() {
+        pets = new ArrayList<Pet>();
+        dogWalkers = new ArrayList<User>();
     }
 
     public DogOwner(ArrayList<Pet> pets) {
         this.pets = pets;
     }
+
+    public ArrayList<User> getDogWalkers() {
+        return dogWalkers;
+    }
+
+    public void setDogWalkers(ArrayList<User> dogWalkers) {
+        this.dogWalkers = dogWalkers;
+    }
+
+    public ArrayList<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(ArrayList<Pet> pets) {
+        this.pets = pets;
+    }
+
+    public void addPet(Pet pet) {
+        pets.add(pet);
+    }
+
+    public void removePet(Pet pet)
+    {
+        if(pets.contains(pet))
+        {
+            pets.remove(pet);
+        }
+    }
+    public void addDogWalker(User dogWalker)
+    {
+        if(dogWalker.isDogWalker())
+        {
+            if(!dogWalkers.contains(dogWalker))
+                  dogWalkers.add(dogWalker);
+        }
+    }
+    public void removeDogWalker(User dogWalker)
+    {
+        if(dogWalker.isDogWalker())
+        {
+            if(dogWalkers.contains(dogWalker))
+                dogWalkers.remove(dogWalker);
+        }
+    }
+
+
+
 }
